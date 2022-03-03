@@ -1,0 +1,375 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    line-height: 18px;
+}
+
+:root {
+    
+    --background: #EFF1F5;
+    --white: #fff;
+    --gray: #afb3b9;
+    --dark_gray: #5A6472;
+    --blue: #0C73FE;
+    --orange: #ff6f32;
+    --green: #35C768;
+    --red: #F54759; 
+
+}
+
+html,
+body {
+    font-style: normal;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+
+button {
+    background-color: var(--orange);
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 1.4em;
+    font-weight: 550;
+    padding:1em;
+    margin: 0 1,2em;
+    width: 100%;
+}
+
+button:hover {
+    filter: contrast(88%);
+}
+
+
+/******************************ticket div************************** */
+
+.section {
+    align-items: center;
+    display: flex;
+    background-color: var(--background);
+    flex-flow: column;
+    height: 100%;
+    padding: 1rem;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.ticket {
+    display: flex;
+    background-color: var(--white);
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    margin: 1em;
+    width: 729px;
+}
+
+.ticket:hover {
+    box-shadow: 0px 5px 15px #ccc;
+}
+
+/******************************ticket nav************************** */
+
+.tick {
+    background-color: var(--green);
+    border-radius: 13px;
+    color: var(--white);
+    font-size: 1.1em;
+    font-weight: 600;
+    left: 1em;
+    padding: 2px 10px;
+    position: absolute;
+    top:-1em;
+}
+
+.tick_fast {
+    background-color: #C79FF2;
+}
+
+
+.ticket_buy {
+    align-items: center;
+    border-right: 2px solid var(--background);
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    padding:2em;
+    width: 207px;
+}
+
+.cost {
+    display: flex;
+    font-size: 2.3em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 1em;
+}
+
+
+/******************************ticket div************************** */
+
+.tickets_way {
+    display: flex;
+    height: 100%;
+    flex: 1;
+    flex-flow: column;
+    padding: 0 2em;
+}
+
+.ticket_header {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    margin: 2em;
+}
+
+.companies, .icons {
+    align-items: center;
+    display: flex;
+}
+
+.logo {
+    height: 36px;
+    margin-right: 10px;
+    width: 36px;
+}
+
+.logo_img {
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+}
+
+.icons {
+    flex-flow: row-reverse;
+}
+
+.share{
+    color: var(--gray);
+    display: flex;
+    height: 27px;
+    width: 24px;
+}
+
+.share:hover,.alert:hover{
+    color: var(--blue);
+}
+
+
+
+.alert{
+    color: var(--gray);
+    display: flex;
+    margin-right: 5px;
+    margin-left: 15px;
+    height: 24px;
+    width: 24px;
+    font-size: 24px;
+}
+
+.luggage,
+.watch,
+.night {
+    align-items: center;
+    border: 1px solid var(--white);
+    border-radius: 50%;
+    box-shadow: 0px 0px 4px var(--gray);
+    color: var(--red);
+    display: flex;
+    height: 24px;
+    margin-left: 5px;
+    justify-content: center;
+    width: 24px;
+    cursor:auto;
+}
+
+
+
+/******************************ticket div************************** */
+
+.main_ticket {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+.from_city,
+.to_city {
+    display: flex;
+    padding: 1em 0;
+    justify-content: space-between;
+}
+
+
+.time {
+    font-size: 28px;
+    margin-bottom:0.5em;
+}
+
+p {
+    color: var(--gray);
+    font-size: 12px;
+    font-weight: 400;
+}
+
+
+/******************************scales************************** */
+
+
+.line {
+    background-color: var(--gray);
+    display: flex;
+    margin:1em 2em;
+    height: 1px;
+    opacity: 0.5;
+}
+
+.fly_scale {
+    display: flex;
+    flex: 1;
+    padding: 1em;
+    position: relative;
+    justify-content: space-between;
+}
+
+.timeline {
+    margin-top: calc(2 * 1.3em);
+    min-width: calc(100% - 2em);
+    align-items: center;
+    display: flex;
+    position: absolute;
+   
+}
+
+.from, .to{
+    display: flex;
+    height: 100%;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+
+.from {
+    align-items: flex-start;
+    ;
+}
+
+.to {
+    align-items: flex-end;
+
+}
+
+
+.fineline, .fineline_svo {
+    border: 1px solid var(--white);
+    border-radius: 3px;
+    background-color: var(--gray);
+    display: flex;
+    flex: 1;
+    position: relative;
+    width: 100%;
+    max-height: 3px;
+}
+
+.fineline::after, .fineline_svo::after {
+    color: var(--blue);
+    content: "DME";
+    display: flex;
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: 40%;
+    margin-top: 0.9rem;
+    justify-content: center;
+}
+
+.fineline_svo::after{
+    content: "SVO";
+}
+
+.fineline:hover::after {
+    color: var(--orange);
+}
+
+.fineline:hover {
+    background-color: var(--orange);
+}
+
+.middleline, .longline, .extraline, .lineplus {
+    border: 1px solid var(--gray);
+    border-radius: 3px;
+    background-color: var(--gray);
+    display: flex;
+    height: 5px;
+}
+
+.middleline{
+    width: 15%;
+}
+
+
+.longline {
+
+    width: 30%;
+}
+
+.extraline {
+
+    width: 50%;
+}
+
+.lineplus {
+
+    width: 60%;
+}
+
+.middleline:hover,
+.longline:hover,
+.extraline:hover,
+.lineplus:hover {
+    background-color: var(--white);
+    border-color: var(--orange);
+}
+
+
+.plane_from,
+.plane_to {
+    display: flex;
+    color: var(--gray);
+    flex-flow: column;
+}
+
+.plane_from::after {
+    color: var(--blue);
+    content: "MSQ";
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 1.4rem;
+}
+
+.plane_to::after {
+    color: var(--blue);
+    content: "TAS";
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 1.4rem; 
+}
+
+.plane_from:hover,
+.plane_to:hover,
+.plane_from:hover::after,
+.plane_to:hover::after {
+    color: var(--orange);
+}
+
+.way {
+    position: absolute;
+    margin-left: 28%;
+    margin-top: 0.3rem;
+}
