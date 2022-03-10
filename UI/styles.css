@@ -2,13 +2,13 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    line-height: 18px;
+    line-height: 18px;  
     font-family: 'Rubik', sans-serif;
 }
 
 :root {
     --white:#fff;
-    --gray:#A4A4A4;;
+    --gray:#C4C4C4;
     --text:#222222;
     --primary:#515FC1;
     --blue: #E6EEFE;
@@ -30,14 +30,15 @@ body, html {
     font-style: normal;
 }
 
-
 main {
     background-color: var(--blue);
-    padding: 2em 0;
+    padding: 4rem 0;
+    min-height: calc(100vh - 100px);
+
 }
 
-p{
-    font-size: 1.3em;
+p, time{
+    font-size: 1.3rem;
 }
 
 a{
@@ -52,7 +53,53 @@ span{
     cursor: pointer;
 }
 
+li{
+    list-style-type: none;
+    margin:1rem;
+    font-size: 1.4rem;
+}
 
+
+input{
+    outline: none;
+    border: none; 
+}
+
+
+.list_item{
+    padding: 0.9rem;
+}
+
+.list_item:hover{
+    background-color:var(--blue);
+    border-radius:var(--radius);
+}
+
+
+.item_filtration:focus{
+    color: var(--primary);
+    text-shadow: 0 0 1px var(--primary);
+    background:none;
+
+}
+
+.date_input{
+    margin:1rem;
+    padding: 0.5rem;
+    border: 3px solid #ecedee; 
+
+}
+
+hr {
+    border: none;
+    background-color: var(--gray);
+    height: 1px; 
+}
+
+h1{
+    font-size: 1.8rem;
+    font-weight: 500;
+}
 /******************************buttons************************* */
 
 
@@ -61,11 +108,11 @@ button{
     border: none;
     cursor: pointer;
     outline: none;
-    font-size: 1.6em; 
+    font-size: 1.6rem; 
     font-weight: 450;
 }
 
-.btn {
+.btn_blue {
     padding: 1.4rem 5rem;
     color:var(--white);
     border-radius:var(--button_radius);
@@ -74,14 +121,12 @@ button{
 
 
 .btn_send{
-    padding: 0.3em 0.6em;
+    padding: 0.3rem 0.6rem;
     background-color:var(--primary);
     border-radius:6px;
 
 }
-
 .twit_back{
-
     background-color: transparent;
     color:var(--gray);
     font-weight: 300;
@@ -89,129 +134,118 @@ button{
 
 }
 
-.light_hr{
-    border: 0;
-    max-width: 60%;
-    margin: 0 auto;
-    border-bottom: 3px solid #F8FAFC; 
-
+.page{
+    overflow: hidden;
+    min-height: 100vh;
 }
+
+
+
+/******************************filter************************** */
+
+.list_filter{
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin-top: 1rem;
+    color:var(--gray);
+    min-width: 18rem;
+    background-color:var(--white);
+}
+
+
 
 /******************************header************************** */
 
-
-.header_container {
-    margin: 30px 100px;
+header{
+    z-index: 2;
+    background-color:var(--white);
+    position: fixed;
+    width: 100%;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.11);
+    padding: 30px 100px;
 }
-
-
 
 
 .header_user{
     color:var(--gray);
-    margin-right: 14px;
-    font-size: 1.6em;
+    margin-right: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 500;
 }
 
-.page{
-    overflow: hidden;
+.header_content{
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    align-items:center;
 }
 
 .feed{
     margin: 5rem 0;
 }
 
+
+
 /******************************filtration************************** */
 
 
-input[type="checkbox"] {
-    left:0;
-    top:0;
-    opacity:0;
-    z-index:1;
-    cursor:pointer;
-}
 
-.filtration {
-    position:relative;
-}
-input[type="checkbox"] {
-    width:100%;
-    height:23px;
-    position:absolute;
-    left:0;
-    top:0;
-    opacity:0;
-    z-index:1;
-    cursor:pointer;
+.filtration{
+    text-align: center;
+    margin: 0 0.5rem;
 }
 
 
-.filtration button+button, .collapsible {
-    display:none;
+.twit_edit{
+    text-align: right;
+    
 }
-.filtration input[type="checkbox"]:checked ~ button {
-    display:none;
-}
-.filtration input[type="checkbox"]:checked ~ button+button{
-    display:inline-block;
-    background-color:blue;
-    color:white;
-}
-.filtration input[type="checkbox"]:checked ~ .collapsible {
-    display:table;
-    max-width: 10em;
-}
-
 
 .filter_items{
     display: flex;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 5rem;
 }
 
-.selector,.load_more {
-    font-size: 1.8em;
+.selector_name {
+    font-size: 1.8rem;
     background-color:var(--white);
     color: var(--gray);
-    padding: 0 1.2em;
+    padding: 0 1.2rem;
     border-radius: var(--button_radius);
     appearance: none;
-    height: 35px;
-    min-width: 150px;
-    font-weight: 550;
+    height: 3.5rem;
+    min-width: 15rem;
+    font-weight: 500;
+}
+
+.more{
+    display: flex;
+    
+}
+
+.load_more{
+    margin: 3rem auto;
+
 }
 
 
-
-
-
-hr {
-    border: none;
-    background-color: var(--gray);
-    height: 1px; 
+.selected{
+    background-color: var(--primary);
+    color:var(--white);
 }
 
+.reset{
+    margin-left: 1rem;
+    vertical-align: middle;
+}
 
 /******************************twits************************** */
-
-textarea{
-    width: 100%;
-    border: none;
-    resize: none;
-    font-family: 'Rubik', sans-serif;
-    outline: none;  
-}
 
 
 .twit_write_area{
     background-color:var(--white);
     border-radius:var(--radius);
-    padding: 40px;
+    padding: 4rem;
+    margin-top: 2rem;
 }
 
 
@@ -220,143 +254,157 @@ textarea{
   overflow-x: hidden;
   padding: 1.3rem;
   text-align: justify;
-  min-height: 7.4em;
+  min-height: 7.4rem;
+  width: 100%;
+  border: none;
+  resize: none;
+  outline: none;  
+}
+
+
+.correct{
+    padding: 0.5rem;
+}
+
+/******************************twit.html************************** */
+
+
+.light_hr{
+    border: none;
+    max-width: 80%;
+    height: 0.3rem;
+    margin: 3rem auto;
+    background-color:#F8FAFC;
 
 }
 
-.edit{
-    padding: 5px;
-}
-
-.twit_actions{
-    margin:1em;
-
-}
-
-.twit_comment, .twit_back{
+.twit_back{
     display: flex;
     align-items:center;
 }
 
+.twit_text{
+    margin: 1.5rem 0;
+}
+
+.comment_info{
+    display: flex;
+    columns: 2;
+    align-items:center;
+    margin: 2rem 0;
+}
+
+.comment_date{
+    text-align: right;
+    width: 100vh;
+    color: var(--gray);
+}
+
+
+.comment_form{
+    display: flex;
+    top: 0;
+    min-height: 2rem;
+}
+
+/******************************comments************************** */
+
+.comments_content{
+    color:var(--gray);
+    margin: 1.6rem 0;
+}
+
+.comments_area{
+    margin: 5rem 10rem;
+    overflow: auto;
+    max-height: 30rem;
+    padding-right: 2rem;
+}
+
+.comment_textarea{
+    border-radius:var(--button_radius);
+    border:none;
+    box-shadow: 0px 0px 8px 3px #00000017;
+    padding: 0.7rem 1.5rem;
+    width: 100%;
+    margin-right: 2rem;
+}
+
+/******************************twits************************** */
+
+
+.twit_footer{
+    columns: 2;
+    text-align: left;
+    margin-top:2rem;
+
+}
+
+.user_check{
+    color: var(--gray);
+    font-weight: normal;
+    font-size: 1.4rem; 
+    margin-left: 0.7rem;
+}
+
+
 .twit_comment_number{
-    font-size: 1.4em;
-    margin-left: 0.6em;
+    font-size: 1.4rem;
+    margin-left: 0.6rem;
+    vertical-align: text-bottom;
     color:var(--gray);
 }
 
-.container{
-    margin: auto;
-    max-width: 714px;
+.main_container{
+    margin: 0 auto;
+    margin-top: 14rem;
+    max-width: 1000px;
 }
 
 .logo{
-   max-width: 150px;
+    max-width:14rem;
 }
 
-
-footer, .header_container, .header_content, .comments_info, .comments_form,.twit_actions{
+.twit_actions,.header_container{
  display: flex;
  justify-content: space-between;
  align-items: center;
 }
 
 
-.form-group{
-    width: 100%;
+.twit_actions{
+    margin-top:2rem;
 }
-
 
 .twit{
     background-color:var(--white);
-    padding: 5em;
+    padding: 4rem;
     margin: 4.5rem 0;
     border-radius:var(--radius);
 }
-.contacts{
-    text-align: right;
-}
+
+
 
 .user_info{
     display: flex;
     align-items: center;
-}
-
-.twit_content{
-    margin: 5px 0;
-
-
+    margin-bottom: 1rem;
 }
 
 .twit_date{
     color:var(--gray);
-    margin-bottom: 0.7em;
 }
 
-
-
-.user_check{
-    color: var(--gray);
-    font-weight: normal;
-    font-size: 1.4em; 
-    margin-left: 0.7em;
+.filter_confirm{
+    border-radius:3px;
+    color:var(--primary);
 }
 
-.user_name{
-    font-size: 1.8em;
-    font-weight: 500;
-
-}
-
-.twit_footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top:2em;
-
-}
-
-.more, .comments_form{
-    margin: 2em 0;
-    display: flex;
-    justify-content: center;
-}
-
-
-
-
-
-/******************************comments************************** */
-
-.comments_content{
-    color:var(--gray);
-    margin: 1.8em 0;
-
-}
-
-.comments_area{
-    margin: 5em 12em;
-    overflow: auto;
-    max-height: 20em;
-    padding-right: 2em;
-}
-
-.comments_form{
- margin: 0 12em;
-}
-
-
-.comments_textarea{
-    border-radius:var(--button_radius);
-    border:none;
-    box-shadow: 0px 4px 6px 0px #00000017;
-    padding: 0.7em 1.5em;
-    width: 100%;
-}
 
 /******************************scroll************************** */
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 0.8rem;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -366,22 +414,28 @@ footer, .header_container, .header_content, .comments_info, .comments_form,.twit
 /******************************animations************************** */
 
 img:hover{
-    filter: drop-shadow(0px 0px 9px var(--primary));
+    filter: drop-shadow(0px 0px 2px var(--gray));
 }
 
 .twit:hover{
-    filter: drop-shadow(0px 4px 8px var(--gray));
+    filter: drop-shadow(0px 4px 3px var(--gray));
 }
 
-.selector:hover, .load_more:hover,button:hover {
+.selector_name:hover, .load_more:hover, button:hover {
     box-shadow: 0 0 5px var(--gray);
 }
 
-.selector:focus { 
+.selector_name:focus { 
     box-shadow: 0 0 0 3px -moz-mac-focusring; 
     color: var(--gray);
     outline: none; 
 } 
+
+.filter_confirm:focus{
+
+    color: var(--primary);
+    text-shadow: 0 0 1px var(--primary);
+}
 
 .no_comments:hover{
     filter: none;
@@ -390,9 +444,14 @@ img:hover{
 /******************************footer************************** */
 
 footer{
-    padding: 32px 100px;
-    line-height: 3em;
-    margin-top: auto;
+    columns: 2;
+    padding: 3.2rem 10rem;
+    line-height: 3rem;
+    text-align: left;
+}
+
+.contacts{
+    text-align: right;
 }
 
 
@@ -401,54 +460,68 @@ footer{
 @media(max-width:992px) {
 
 
-    .header_container{
-        margin: 30px;
+
+    .filter_items {
+        flex-direction: column;
+    }
+    .filtration{
+        margin: 0.5rem;
     }
 
-    main{
-        height:100%;
-        margin:0;
+    .main_container{
+        margin:0 2rem;
+        margin-top: 10rem;
+    }
+
+    .logo{
+        max-width: 50%;
+        min-width: 15rem;
+        
+    }
+
+    header{
+        padding: 2rem;
     }
 
 
-    footer{
-        padding: 32px;
+    .list_filter{
+        width: 40%;
+        margin: 1rem auto;
     }
 
 } 
 
 @media(max-width:768px) {
 
-    
-
-    .container {
-       padding: 0 3.5em;
+    .btn_blue{
+        padding: 1rem 2rem;
+        font-size: 1.4rem;
     }
-
-    .btn{
-        padding: 0.6rem 3rem;
-
-    }
-
-    .logo{
-        max-width: 9em;
-    }
-
-    
-
 
 }
 
 @media(max-width:620px){
-    .comments_area,.comments_form{
+    .comments_area,.comment_form{
         margin: auto;
     }
 
-    .comments_form{
-        margin-top: 2em;
+    .comment_form{
+        margin-top: 2rem;
     }
 
-    .filter_items {
-        flex-direction: column;
+    footer{
+        padding: 32px;
+        columns: 1;
     }
+
+    .contacts{
+        text-align: left;
+    }
+
+    .date_input{
+        margin: 0;
+        width: 95%;
+    }
+
 }
+
