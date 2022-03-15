@@ -49,7 +49,7 @@ const tweets = [
     {
         id: uniId(),
         text: 'Ясность нашей позиции очевидна: базовый вектор развития #development позволяет оценить значение поэтапного и последовательного развития общества.',
-        createdAt: new Date('2022-02-25T23:00:01'),
+        createdAt: new Date('2022-02-25T23:00:01'), /*the author is missing to check the method*/
         comments: [
             {
                 id: commentId(),
@@ -607,15 +607,16 @@ const twModule = (function () {
     ///addComment////добавить комментарий в массив///////////
 
     const addComment = (id, comment) => {
-        let tweet = getTweet(id);
+        const tweet = getTweet(id);
 
-        if (validateComment(comment)) {
-            tweet.comments.push({
-                id: commentId(),
-                text: comment.text,
-                createdAt: new Date(),
-                author: user
-            })
+        const newСomment = {
+            id: commentId(),
+            text: comment,
+            createdAt: new Date(),
+            author: user
+        }
+        if (validateComment(newСomment)) {
+            tweet.comments.push(newСomment)
 
             return true;
         }
@@ -623,7 +624,7 @@ const twModule = (function () {
     };
 
 
-    // changeUser(usr: string): void//////////
+    /////// changeUser(usr: string): void//////////
 
     const changeUser = (usr) => {
 
@@ -703,9 +704,9 @@ const twModule = (function () {
 
 // //////////addComment check////////////////
 
-// console.log(twModule.addComment('13', 'newcomment'));
+// console.log(twModule.addComment('1', 'newcomment'));
 
-// console.log(twModule.addComment('3', '')); /*failed to add*/
+// console.log(twModule.addComment('2', 5)); /*failed to add*/
 
 
 // /////////changeUser check////////////////
