@@ -811,11 +811,11 @@ class TweetCollection {
 
 
     addAll(tws) {
-        const isFoundInValidTweet = false;
-        const novalidtweets = [];
+        let isFoundInValidTweet = false;
+        let novalidtweets = [];
 
         tws.forEach(tw => {
-            const obj = new Tweet(obj);
+            const obj = new Tweet();
 
             if (!obj.isValidTweet) {
                 novalidtweets.push(tw);
@@ -830,7 +830,7 @@ class TweetCollection {
             this.tweets = new Map(...this.arrayTweet, ...tws);
         }
 
-        return [];
+        return novalidtweets;
     }
 
     clear() {
@@ -840,21 +840,3 @@ class TweetCollection {
 
 
 }
-
-// console.log(Tweet._user);
-
-// console.log(new TweetCollection(tweets).tweets);
-
-// console.log(new TweetCollection()._arrayTweet);
-
-// console.log(TweetCollection._tweets);
-
-// console.log(new TweetCollection(tweets).tweets);
-
-
-// console.log(new TweetCollection().getPage(0,10));
-
-
-console.log(new TweetCollection().addAll(tweets));
-
-// console.log(new TweetCollection(tweets).arrayTweet);
