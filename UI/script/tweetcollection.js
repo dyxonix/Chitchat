@@ -1,38 +1,27 @@
 "use strict"
 
-
 class TweetCollection {
 
-    constructor(tws) {
+    user = "";
 
-        this._tweets = new Map();
-
-        if (tws) {
-            tws.forEach((tweet, index) => {
-                this._tweets.set(index, new Tweet(tweet));
-            });
-        }
-    }
-
-
-    static _user = 'Мария';
-
+    static maxTextLength = 280;
 
     get user() {
-        return TweetCollection._user;
+        return TweetCollection.user;
     }
 
-    set user(value) {
-        TweetCollection._user = value;
+    set user(uservalue) {
+        TweetCollection.user = uservalue;
     }
 
-    get tweets() {
-        return this._tweets;
+    _twscopy = [];
+
+
+    constructor(tws) {
+        this._twscopy = tws || [];
     }
 
-    static _maxTextLength = 280;
-
-    /////////////////////////////All helper methods for validate///////////////////////////////////
+    //////////////////////////////////////All helper methods for validate///////////////////////////////////////////
 
     static tweetRules(tw) {
         const { keys, types } = TweetCollection.validateConfig.tweet;
@@ -56,7 +45,7 @@ class TweetCollection {
         tweet: {
             types: {
                 id: (value) => typeof value === 'string',
-                text: (value) => typeof value === 'string' && value.length <= this._maxTextLength,
+                text: (value) => typeof value === 'string' && value.length <= TweetCollection.maxTextLength,
                 createdAt: (value) => value instanceof Date,
                 author: (value) => typeof value === 'string',
                 comments: (value) => Array.isArray(value)
@@ -66,7 +55,7 @@ class TweetCollection {
         comment: {
             types: {
                 id: (value) => typeof value === 'string',
-                text: (value) => typeof value === 'string' && value.length <= this._maxTextLength,
+                text: (value) => typeof value === 'string' && value.length <= TweetCollection.maxTextLength,
                 createdAt: (value) => value instanceof Date,
                 author: (value) => typeof value === 'string'
             },
@@ -83,54 +72,54 @@ class TweetCollection {
         return !Object.entries(tw).some(([key, value]) => typeConfig[key] ? !typeConfig[key](value) : true);
     }
 
+    static arrayClone(arr) {
+        return arr.map(item => {
+            return JSON.parse(JSON.stringify(item))
+        });
+    }
 
-    //////////////////////////////////////// end of helper methods for validate///////////////////////////////////////
 
-
+    ///////////////////////////////////////////// end of helper methods for validate//////////////////////////////////////////////
 
 
     getPage = (skip = 0, top = 10, filterConfig = {}) => {
 
 
-        let copyArray = new TweetCollection(tweets).arrayTweet;
-
+        const filteredTweets = TweetCollection.arrayClone(this._twscopy);
 
         if (filterConfig) {
 
             if (filterConfig.author) {
-
-                copyArray = copyArray.filter((tweet) => {
+                filteredTweets = filteredTweets.filter((tweet) => {
 
                     if (tweet.author) {
                         return tweet.author.toLowerCase().includes(filterConfig.author.toLowerCase())
                     }
-                    return false
+                    return false;
                 })
-
-
             }
 
             if (filterConfig.text) {
-                copyArray = copyArray.filter((tweet) =>
+                filteredTweets = filteredTweets.filter((tweet) =>
                     tweet.text.toLowerCase().includes(filterConfig.text.toLowerCase())
                 );
             }
 
             if (filterConfig.dateFrom) {
-                copyArray = copyArray.filter(
+                filteredTweets = filteredTweets.filter(
                     (tweet) => tweet.createdAt > filterConfig.dateFrom
                 );
             }
 
             if (filterConfig.dateTo) {
-                copyArray = copyArray.filter(
+                filteredTweets = filteredTweets.filter(
                     (tweet) => tweet.createdAt < filterConfig.dateTo
                 );
             }
 
             if (filterConfig.hashtags) {
 
-                copyArray = copyArray.filter((tweet) => {
+                filteredTweets = filteredTweets.filter((tweet) => {
                     const tweetText = tweet.text.toLowerCase();
                     const hashtags = filterConfig.hashtags;
 
@@ -139,19 +128,83 @@ class TweetCollection {
 
             }
 
+            const sortedTweets = filteredTweets.sort(function (a, b) {
+                return a.createdAt - b.createdAt;
+            }).slice(skip, skip + top);
+
+            return sortedTweets;
+
         }
+    }
 
-        let sortedTweets = copyArray.sort(function (a, b) {
-            return a.createdAt - b.createdAt;
-        });
+    get(id) {
+        return this._twscopy.find((tweet) => tweet.id === id);
 
+    }
 
-        return sortedTweets.slice(skip, skip + top);
+    add = (text) => {
+
+        const newTweet = new Tweet(text);
+
+        if (Tweet.validate(newTweet)) {
+            this._twscopy.push(new Tweet(newTweet));
+            return true;
+        }
+        return false;
     };
 
 
+    edit = (id, txt) => {
+        const tweet = this.get(id);
+
+        if (Tweet.validate(tweet)) {
+
+            if (tweet.author == TweetCollection.user && typeof txt === 'string'
+                && txt.length <= TweetCollection.maxTextLength) {
+                tweet.text = txt;
+                return true;
+            }
+            return false;
+        }
+    };
+
+    remove(id) {
+        const tweet = this.get(id);
+
+        if (tweet) {
+            if (tweet.author == TweetCollection.user) {
+                const index = this._twscopy.findIndex((tweet) => tweet.id === id);
+                this._twscopy.splice(index, 1);
+                return true;
+            }
+        }
+        return false;
+    };
+
+    addAll(tws) {
+        let isFoundValidTweet = false;
+        let novalidtweets = [];
+
+        tws.forEach(tw => {
+            if (Tweet.validate(tw)) {
+                this._twscopy.push(tw);
+                isFoundValidTweet = true;
+            } else {
+                novalidtweets.push(tw);
+            }
+        });
+        return novalidtweets;
+    }
+
+
+    clear() {
+        this._twscopy.splice(0, this._twscopy.length);
+        return this._twscopy;
+    }
+
+
     addComment = (id, comment) => {
-        const tweet = this.getTweet(id);
+        const tweet = this.get(id);
 
         const newСomment = {
             id: commentId(),
@@ -166,86 +219,5 @@ class TweetCollection {
         }
         return false;
     };
-
-
-    get(id) {
-        return this.arrayTweet.find((tweetClass) => tweetClass.id === id);
-    }
-
-
-    add = (text) => {
-
-        const newTweet = {
-            id: uniId(),
-            text: text,
-            createdAt: new Date(),
-            author: TweetCollection.user,
-            comments: [],
-        }
-
-        if (Tweet.validate(newTweet)) {
-            this.tweets.set(new Tweet(newTweet));
-            return true;
-        }
-        return false;
-    };
-
-
-    edit = (id, txt) => {
-        let tweet = this._get(id);
-
-        if (Tweet.validate(tweet)) {
-
-            if (tweet.author == TweetCollection.user) {
-
-                tweet.text = txt;
-
-                return true;
-            }
-            return false;
-        }
-    };
-
-
-    remove(id) {
-        let tweet = this._get(id);
-
-        if (tweet.author === TweetCollection.user) {
-            const index = this.arrayTweet.findIndex((tweet) => tweet.id === id);
-            this.tweets.delete(index);
-            return true;
-        }
-        return false;
-    };
-
-
-    addAll(tws) {
-        let isFoundInValidTweet = false;
-        let novalidtweets = [];
-
-        tws.forEach(tw => {
-            const obj = new Tweet();
-
-            if (!obj.isValidTweet) {
-                novalidtweets.push(tw);
-                isFoundInValidTweet = true;
-            }
-        });
-
-
-        if (isFoundInValidTweet) {
-            return novalidtweets;
-        } else {
-            this.tweets = new Map(...this.arrayTweet, ...tws);
-        }
-
-        return novalidtweets;
-    }
-
-    clear() {
-        this.tweets.clear();
-    }
-
-
 
 }
