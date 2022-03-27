@@ -85,24 +85,43 @@ class TweetCollection {
     getPage = (skip = 0, top = 10, filterConfig = {}) => {
 
 
-        const filteredTweets = TweetCollection.arrayClone(this._twscopy);
+        let filteredTweets = TweetCollection.arrayClone(this._twscopy);
+
 
         if (filterConfig) {
 
             if (filterConfig.author) {
+
                 filteredTweets = filteredTweets.filter((tweet) => {
 
                     if (tweet.author) {
                         return tweet.author.toLowerCase().includes(filterConfig.author.toLowerCase())
                     }
-                    return false;
+                    return false
                 })
+
             }
 
             if (filterConfig.text) {
-                filteredTweets = filteredTweets.filter((tweet) =>
-                    tweet.text.toLowerCase().includes(filterConfig.text.toLowerCase())
-                );
+                filteredTweets = filteredTweets.filter((tweet) => {
+                    if (tweet.text) {
+                        return tweet.text.toLowerCase().includes(filterConfig.text.toLowerCase())
+                    }
+                    return false
+                });
+            }
+
+            if (filterConfig.hashtags) {
+
+                filteredTweets = filteredTweets.filter((tweet) => {
+                    if (tweet.hashtags) {
+                        const tweetText = tweet.text.toLowerCase();
+
+                        return filterConfig.hashtags.every((tag) => tweetText.includes(`#${tag}`));
+                    }
+                    return false
+                });
+
             }
 
             if (filterConfig.dateFrom) {
@@ -117,24 +136,18 @@ class TweetCollection {
                 );
             }
 
-            if (filterConfig.hashtags) {
-
-                filteredTweets = filteredTweets.filter((tweet) => {
-                    const tweetText = tweet.text.toLowerCase();
-                    const hashtags = filterConfig.hashtags;
-
-                    return !hashtags.every(tag => tweetText.includes(`#${tag}`));
-                });
-
-            }
-
-            const sortedTweets = filteredTweets.sort(function (a, b) {
-                return a.createdAt - b.createdAt;
-            }).slice(skip, skip + top);
-
-            return sortedTweets;
-
         }
+
+        let sortedTweets = filteredTweets.sort(function (a, b) {
+            return a.createdAt - b.createdAt;
+        });
+
+        sortedTweets = sortedTweets.slice(skip, skip + top);
+
+
+        return sortedTweets;
+
+
     }
 
     get(id) {
