@@ -11,48 +11,46 @@ class Node {
 class List {
     constructor(value) {
         this.root = new Node(value);
-        this.length = 0;
+        this.lengthIndex = 0;
     }
 
-    addNode(value, i = this.length) {
+    addNode(value, i = this.lengthIndex) {
         let position = 0;
         let current = this.root;
 
-        if (i <= this.length) {
+        if (i <= this.lengthIndex) {
             while (current.next !== null && position !== i) {
                 current = current.next;
                 position++;
             }
             let element = new Node(value);
-            this.length++;
+            this.lengthIndex++;
             element.next = current.next;
             current.next = element;
             return true;
         } else return false;
     }
 
-    removeNode(i = this.length) {
+    removeNode(i = this.lengthIndex) {
         let current = this.root,
             position = 0,
-            beforeNodeToDelete = null,
-            nodeToDelete = null;
+            previous = null
 
-        if (i > this.length) {
+        if (i > this.lengthIndex || this.lengthIndex === 0) {
             return false;
         }
         if (i === 0) {
             this.root = current.next;
-            this.length--;
+            this.lengthIndex--;
             return true;
         }
         while (position !== i) {
-            beforeNodeToDelete = current;
+            previous = current;
             current = current.next;
             position++;
         }
-        beforeNodeToDelete.next = current.next;
-        nodeToDelete = null;
-        --this.length;
+        previous.next = current.next;
+        --this.lengthIndex;
         return true;
     }
 
@@ -65,7 +63,6 @@ class List {
         } return result;
     }
 }
-
 
 
 
