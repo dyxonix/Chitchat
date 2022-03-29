@@ -74,7 +74,7 @@ class TweetCollection {
 
     static arrayClone(arr) {
         return arr.map(item => {
-            return item = { ...arr };
+            return item = [ ...arr ];
         });
     }
 
