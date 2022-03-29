@@ -19,7 +19,7 @@ class Tweet {
 
     set id(id) {
 
-        this._id = id;
+        console.log('can\'t set author name');
     }
 
     get createdAt() {
@@ -28,7 +28,7 @@ class Tweet {
 
     set createdAt(createdAt) {
 
-        this._createdAt = createdAt;
+        console.log('can\'t set a date');
     }
 
     get author() {
@@ -36,7 +36,7 @@ class Tweet {
     }
 
     set author(author) {
-        this._author = author;
+        console.log('can\'t set author name');
     }
 
 

@@ -74,7 +74,7 @@ class TweetCollection {
 
     static arrayClone(arr) {
         return arr.map(item => {
-            return JSON.parse(JSON.stringify(item))
+            return item = { ...arr };
         });
     }
 
@@ -147,7 +147,19 @@ class TweetCollection {
 
         return sortedTweets;
 
+    }
 
+    get twscopy() {
+        return this._twscopy;
+    }
+
+    set twscopy(tweets) {
+        if (tweets.length === 0) this._twscopy = [];
+        else
+            tweets.forEach((tweet) => {
+                if (Tweet.validate(tweet)) this._twscopy.push(tweet);
+                else false;
+            });
     }
 
     get(id) {
@@ -160,7 +172,7 @@ class TweetCollection {
         const newTweet = new Tweet(text);
 
         if (Tweet.validate(newTweet)) {
-            this._twscopy.push(new Tweet(newTweet));
+            this._twscopy.push(newTweet);
             return true;
         }
         return false;
@@ -177,7 +189,7 @@ class TweetCollection {
                 tweet.text = txt;
                 return true;
             }
-            return false;
+            return tweet.text;
         }
     };
 
@@ -190,18 +202,19 @@ class TweetCollection {
                 this._twscopy.splice(index, 1);
                 return true;
             }
+            return false;
         }
         return false;
     };
 
     addAll(tws) {
-        let isFoundValidTweet = false;
+
         let novalidtweets = [];
 
         tws.forEach(tw => {
             if (Tweet.validate(tw)) {
                 this._twscopy.push(tw);
-                isFoundValidTweet = true;
+
             } else {
                 novalidtweets.push(tw);
             }
@@ -211,20 +224,14 @@ class TweetCollection {
 
 
     clear() {
-        this._twscopy.splice(0, this._twscopy.length);
-        return this._twscopy;
+        this._twscopy = [];
     }
 
 
     addComment = (id, comment) => {
         const tweet = this.get(id);
+        const newСomment = new Comment(comment);
 
-        const newСomment = {
-            id: commentId(),
-            text: comment,
-            createdAt: new Date(),
-            author: TweetCollection.user
-        }
         if (Comment.validate(newСomment)) {
             tweet.comments.push(newСomment)
 

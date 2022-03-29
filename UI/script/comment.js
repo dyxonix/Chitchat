@@ -17,7 +17,7 @@ class Comment {
 
     set id(id) {
 
-        this._id = id;
+        console.log('can\'t set id');
     }
 
     get createdAt() {
@@ -25,7 +25,7 @@ class Comment {
     }
 
     set createdAt(createdAt) {
-        this._createdAt = createdAt;
+        console.log('can\'t set a date');
     }
 
     get author() {
@@ -33,7 +33,7 @@ class Comment {
     }
 
     set author(author) {
-        this._author = author;
+        console.log('can\'t set author name');
     }
 
 
