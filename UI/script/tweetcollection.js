@@ -74,7 +74,7 @@ class TweetCollection {
 
     static arrayClone(arr) {
         return arr.map(item => {
-            return item = [ ...arr ];
+            return item = [...arr];
         });
     }
 
@@ -114,12 +114,11 @@ class TweetCollection {
             if (filterConfig.hashtags) {
 
                 filteredTweets = filteredTweets.filter((tweet) => {
-                    if (tweet.hashtags) {
-                        const tweetText = tweet.text.toLowerCase();
-
-                        return filterConfig.hashtags.every((tag) => tweetText.includes(`#${tag}`));
+                    if (tweet.text) {
+                        return tweet.text.toLowerCase().includes(`#${filterConfig.hashtags.toLowerCase()}`)
                     }
                     return false
+
                 });
 
             }
@@ -169,7 +168,13 @@ class TweetCollection {
 
     add = (text) => {
 
-        const newTweet = new Tweet(text);
+        const newTweet = {
+            id: uniId(),
+            text: text,
+            createdAt: new Date(),
+            author: this.user,
+            comments: [],
+        }
 
         if (Tweet.validate(newTweet)) {
             this._twscopy.push(newTweet);
@@ -179,12 +184,13 @@ class TweetCollection {
     };
 
 
+
     edit = (id, txt) => {
         const tweet = this.get(id);
 
         if (Tweet.validate(tweet)) {
 
-            if (tweet.author == TweetCollection.user && typeof txt === 'string'
+            if (this.user === tweet.author && typeof txt === 'string'
                 && txt.length <= TweetCollection.maxTextLength) {
                 tweet.text = txt;
                 return true;
@@ -195,9 +201,8 @@ class TweetCollection {
 
     remove(id) {
         const tweet = this.get(id);
-
         if (tweet) {
-            if (tweet.author == TweetCollection.user) {
+            if (this.user === tweet.author) {
                 const index = this._twscopy.findIndex((tweet) => tweet.id === id);
                 this._twscopy.splice(index, 1);
                 return true;
