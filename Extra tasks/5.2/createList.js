@@ -1,3 +1,6 @@
+
+"use script"
+
 const list = [
     {
         value: "Пункт 1.",
@@ -35,27 +38,35 @@ const list = [
     },
 ];
 
-const createList = (title, list) => {
-    document.write(`<h2>${title}</h2>`);
-    const ul = document.createElement("ul");
-    document.body.appendChild(ul);
-    for (item of list) {
-        const li = document.createElement("li");
-        li.innerText = item.value;
-        ul.children ? ul.appendChild(li) : null;
-        item.children ? createChildLi(item, li) : null;
-    }
-};
+function createList(title, list) {
+    const body = document.querySelector('body');
+    const newTitle = document.createElement('h2');
+    const newList = createUl(list);
+    newTitle.innerHTML = title;
+    body.appendChild(newTitle);
+    body.appendChild(newList);
+}
 
-const createChildLi = (node, li) => {
-    const ul = document.createElement("ul");
-    for (item of node.children) {
-        const childLi = document.createElement("li");
-        childLi.innerText = item.value;
-        ul.children ? ul.appendChild(childLi) : null;
-        li.children ? li.appendChild(ul) : null;
-        item.children ? createChildLi(item, childLi) : null;
-    }
-};
+function createUl(ul) {
+    const newUl = document.createElement('ul');
 
-createList("Extra Task 5.2", list);
+
+    ul.forEach(li => {
+        const newLi = document.createElement('li');
+
+        if (li.children) {
+            newLi.setAttribute('style', 'font-size: 90%');
+            newLi.innerHTML = li.value;
+            newLi.appendChild(createUl(li.children));
+        } else {
+            newLi.innerHTML = li.value;
+        }
+
+        newUl.appendChild(newLi);
+    })
+    return newUl;
+}
+
+createList("List", list);
+
+
