@@ -29,6 +29,10 @@ class TweetFeedView {
             <article class="twit">
             <div class="user_info">
             <h1 class="user_name">${item.author}</h1>
+            ${item.author === tweetColl.user
+                ? '<span class="user_check">(Вы)</span>'
+                : ""
+            }
             </div>
     
             <div class="twit_date">${formatDate(item.createdAt)}</div>
@@ -39,6 +43,11 @@ class TweetFeedView {
             <img src="images/chat.svg" alt="chat">
             </a>
             <span class="twit_comment_number">${item.comments.length}</span>
+            ${item.author === tweetColl.user
+                ? ' <div class="twit_edit"> <a class="correct" href="#"><img src="images/edit.svg" alt="edit"></a><a href="#"><img src="images/delete.svg" alt="delete"></a></div>'
+                : ""
+            }
+            </div>
             </div>
             </article>
             `
