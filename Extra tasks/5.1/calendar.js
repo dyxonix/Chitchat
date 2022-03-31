@@ -1,40 +1,44 @@
+
 "use script"
 
 
-getDay = (date) => {
-    let day = date.getDay();
-    if (day == 0) day = 7;
-    return day - 1;
-};
+function createCalendar(elem, year, month) {
+    const element = document.getElementById(elem);
 
-createCalendar = (elem, year, month) => {
+    let table = `<table border="1" cellspacing="0">
+            
+        <tr>
+            <th>пн</th>
+            <th>вт</th>
+            <th>ср</th>
+            <th>чт</th>
+            <th>пт</th>
+            <th>сб</th>
+            <th>вс</th>
+        </tr>`;
 
-    let mon = month - 1;
-    let dd = new Date(year, mon);
-    let table = `<table border="1" cellspacing="0" cellpadding="3">
-          <tr>
-              <th colspan="7">${mon + 1}.${year}</th>
-          </tr>
-          <tr>
-          <td>пн</td>
-          <td>вт</td>
-          <td>ср</td>
-          <td>чт</td>
-          <td>пт</td>
-          <td>сб</td>
-          <td>вс</td>
-          </tr>
-          <tr></tr>`;
-
-    for (let i = 0; i < getDay(dd); i++) table += "<td></td>";
-    for (; dd.getMonth() == mon; dd.setDate(dd.getDate() + 1)) {
-        table += "<td>" + dd.getDate() + "</td>";
-        if (getDay(dd) % 7 == 6) table += "</tr><tr>";
+    const date = new Date(year, month - 1, 1);
+    for (let i = 0; i < 6; i++) {
+        let isEmpty = true;
+        let row = '\n <tr>';
+        for (let j = 1; j < 8; j++) {
+            if (date.getDay() !== j % 7 || date.getMonth() !== month - 1) {
+                row += '\n <td></td>';
+            } else {
+                row += `\n <td>${date.getDate().toString()}</td>`;
+                date.setDate(date.getDate() + 1);
+                isEmpty = false;
+            }
+        }
+        row += '\n </tr>';
+        if (!isEmpty) {
+            table += row;
+        }
     }
-    if (getDay(dd) != 0)
-        for (let i = getDay(dd); i < 7; i++) table += "<td></td>";
-    table += "</tr></table>";
-    document.write(table);
-};
-createCalendar(calendar, 2012, 9);
+    table += '\n </table>';
+    element.innerHTML = table;
+}
 
+/*-----------------------------------------------------------------------------------------------*/
+
+createCalendar('calendar', 2012, 10);
