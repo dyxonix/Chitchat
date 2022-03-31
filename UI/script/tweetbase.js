@@ -6,12 +6,11 @@ const uniId = () => `${i++}`;
 const commentId = () => `${c++}`;
 
 
-
 const tweets = [
     {
         id: uniId(),
         text: 'В рамках спецификации современных стандартов, непосредственные участники технического прогресса ассоциативно распределены по отраслям.#datamola2022',
-        createdAt: new Date('2022-02-18T02:17:46'),
+        createdAt: new Date("2022-02-18T02:17:46"),
         author: 'Ирина',
         comments: [
 
@@ -49,7 +48,7 @@ const tweets = [
     {
         id: uniId(),
         text: 'Ясность нашей позиции очевидна: базовый вектор развития #development позволяет оценить значение поэтапного и последовательного развития общества.',
-        createdAt: new Date('2022-02-25T23:00:01'), /*the author is missing to check the method*/
+        createdAt: new Date("2022-02-28T23:50:01"), /*the author is missing to check the method*/
         comments: [
             {
                 id: commentId(),
@@ -85,29 +84,9 @@ const tweets = [
         ],
     },
     {
-        id: '33',
-        text: 'Вот вам яркий пример современных тенденций - семантический разбор внешних противодействий обеспечивает широкому кругу (специалистов) участие в формировании инновационных методов управления процессами.',
-        createdAt: new Date('2022-02-26T15:26:05'),
-        author: 'Мария',
-        comments: [
-            {
-                id: commentId(),
-                text: 'Инцидент не исчерпан: ночь оказалась долгой.',
-                createdAt: new Date('2022-02-26T23:46:46'),
-                author: 'Арина',
-            },
-            {
-                id: commentId(),
-                text: 'Инцидент не исчерпан: ночь оказалась долгой.',
-                createdAt: new Date('2022-02-26T23:46:46'),
-                author: 'Арина',
-            },
-        ]
-    },
-    {
         id: uniId(),
         text: 'Вот вам яркий пример современных тенденций - семантический разбор внешних противодействий обеспечивает широкому кругу (специалистов) участие в формировании инновационных методов управления процессами.',
-        createdAt: new Date('2022-02-26T23:15:44'),
+        createdAt: new Date("2022-02-26T23:15:44"),
         author: 'Евгений',
         comments: [
             {
@@ -123,7 +102,7 @@ const tweets = [
     {
         id: uniId(),
         text: 'Ясность нашей позиции очевидна: базовый вектор развития #development позволяет оценить значение поэтапного и последовательного развития общества.',
-        createdAt: new Date('2022-02-28T14:33:24'),
+        createdAt: new Date("2022-02-28T14:33:24"),
         author: 'Gleb',
         comments: [
             {
@@ -145,7 +124,7 @@ const tweets = [
     {
         id: uniId(),
         text: 'А ещё стремящиеся вытеснить традиционное производство, нанотехнологии, превозмогая сложившуюся непростую экономическую ситуацию, объединены в целые кластеры себе подобных.#производство',
-        createdAt: new Date('2022-03-01T09:13:33'),
+        createdAt: new Date("2022-03-01T09:13:33"),
         author: 'Виктория Смит',
         comments: [
 
@@ -155,20 +134,20 @@ const tweets = [
     {
         id: uniId(),
         text: 'А также предприниматели в сети интернет, вне зависимости от их уровня, должны быть обнародованы. Прежде всего, глубокий уровень погружения, в своём классическом представлении, допускает внедрение экспериментов, поражающих по своей масштабности и грандиозности.',
-        createdAt: new Date('2022-03-02T18:27:18'),
+        createdAt: new Date("2022-03-02T18:27:18"),
         author: 'Тема Николаев',
         comments: [
 
             {
                 id: commentId(),
                 text: 'Логотип крупнейшей компании по производству мыльных пузырей не стал ограничивающим фактором.',
-                createdAt: new Date('2022-03-02T23:10:43'),
+                createdAt: new Date("2022-03-02T23:10:43"),
                 author: 'Денис',
             },
             {
                 id: commentId(),
                 text: 'Давайте разбираться: склады ломятся от зерна.',
-                createdAt: new Date('2022-03-02T23:50:46'),
+                createdAt: new Date("2022-03-02T23:50:46"),
                 author: 'Дина',
             },
 
@@ -178,7 +157,7 @@ const tweets = [
     {
         id: uniId(),
         text: 'Каждый из нас понимает очевидную вещь: современная методология разработки требует от нас анализа прогресса профессионального сообщества.',
-        createdAt: new Date('2022-03-01T18:27:18'),
+        createdAt: new Date("2022-03-01T18:27:18"),
         author: 'Евгений',
         comments: [
 
@@ -410,310 +389,3 @@ const tweets = [
     },
 
 ];
-
-
-
-const twModule = (function () {
-
-    let user = 'Мария';
-
-
-    ///getTweets/////Получить массив твитов с сортировкой по дате создания и пагинацией.////////////////////////////////////////////////////
-
-
-    const getTweets = (skip = 0, top = 10, filterConfig) => {
-
-        let filteredTweets = arrayClone(tweets); // TO DO determine the purpose of this line
-
-
-        if (filterConfig) {
-            if (filterConfig.author) {
-                filteredTweets = filteredTweets.filter((tweet) =>
-                    tweet.author
-                        .toLowerCase()
-                        .includes(filterConfig.author.toLowerCase())
-                );
-            }
-
-            if (filterConfig.text) {
-                filteredTweets = filteredTweets.filter((tweet) =>
-                    tweet.text.toLowerCase().includes(filterConfig.text.toLowerCase())
-                );
-            }
-
-            if (filterConfig.dateFrom) {
-                filteredTweets = filteredTweets.filter(
-                    (tweet) => tweet.createdAt > filterConfig.dateFrom
-                );
-            }
-
-            if (filterConfig.dateTo) {
-                filteredTweets = filteredTweets.filter(
-                    (tweet) => tweet.createdAt < filterConfig.dateTo
-                );
-            }
-
-            if (filterConfig.hashtags) {
-
-                filteredTweets = filteredTweets.filter((tweet) => {
-                    const tweetText = tweet.text.toLowerCase();
-                    const hashtags = filterConfig.hashtags;
-
-                    return !hashtags.some(tag => !tweetText.includes(tag));
-                });
-            }
-
-        }
-
-        let sortedTweets = filteredTweets.sort(function (a, b) {
-            return a.createdAt - b.createdAt;
-        });
-
-        sortedTweets = sortedTweets.filter((el, index) => index >= skip && index <= top + skip);
-
-        return sortedTweets;
-    };
-
-
-
-
-    ///getTweet//получить твит из массива tweets с определенным id///////////////////////////////////////////////////////
-
-    const getTweet = (id) => {
-
-        return tweets.find((tweet) => tweet.id === id)
-
-    }
-
-    ///validateTweet////boolean - проверить объект tw на валидность//////////////////////////////////////////////
-
-
-    const validateConfig = {
-        tweet: {
-            types: {
-                id: (value) => typeof value === 'string',
-                text: (value) => typeof value === 'string' && value.length <= 280,
-                createdAt: (value) => value instanceof Date,
-                author: (value) => typeof value === 'string',
-                comments: (value) => Array.isArray(value)
-            },
-            keys: ['id', 'text', 'createdAt', 'author', 'comments']
-        },
-        comment: {
-            types: {
-                id: (value) => typeof value === 'string',
-                text: (value) => typeof value === 'string' && value.length <= 280,
-                createdAt: (value) => value instanceof Date,
-                author: (value) => typeof value === 'string'
-            },
-            keys: ['id', 'text', 'createdAt', 'author']
-        }
-    };
-
-
-    function validateTweet(tw) {
-
-        const isInValidTweet = Object.keys(tw).some((key) => {
-            if (Array.isArray(tw[key])) {
-                return tw[key].some(element =>
-                    !validateComment(element)
-                );
-            }
-
-            return !tweetRules(tw);
-        });
-
-        return !isInValidTweet;
-    }
-
-    function tweetRules(tw) {
-        const { keys, types } = validateConfig.tweet;
-        const ruleByKeys = validateTweetByKeys(tw, keys);
-        const ruleByType = validateTweetByType(tw, types);
-
-        return ruleByKeys && ruleByType;
-    }
-
-    function validateTweetByKeys(tw, validKeys) {
-        return !validKeys.some(key => !tw.hasOwnProperty(key));
-    }
-
-    function validateTweetByType(tw, typeConfig) {
-        return !Object.entries(tw).some(([key, value]) => typeConfig[key] ? !typeConfig[key](value) : true);
-    }
-
-    ///addTweet////добавить новый твит в массив ///////////
-
-    const addTweet = (text) => {
-        text.id = uniId();
-        text.createdAt = new Date();
-        text.author = user;
-        text.comments = [];
-
-        if (validateTweet(text)) {
-            tweets.push(text);
-            return true;
-        }
-        return false;
-    };
-
-
-    ///editTweet////изменить текст твита в массиве tweets по id///////////
-    const editTweet = (id, txt) => {
-        let tweet = getTweet(id);
-
-        if (validateTweet(tweet)) {
-
-            if (tweet.author == user) {
-
-                tweet.text = txt;
-
-                return true;
-            }
-            return false;
-        }
-    };
-
-    ///removeTweet//// удалить твит по id из массива ///////////
-
-    const removeTweet = (id) => {
-        let tweet = getTweet(id);
-
-        if (tweet.author === user) {
-            const index = tweets.findIndex((tweet) => tweet.id === id);
-            tweets.splice(index, 1);
-            return true;
-        }
-        return false;
-    };
-
-    ///validateComment////boolean - проверить объект com на валидность///////////
-    function validateComment(com) {
-        if (com == null || com == undefined) {
-            return false;
-        }
-        return commentRules(com);
-    }
-
-
-    function commentRules(tw) {
-        const { keys, types } = validateConfig.comment;
-        const ruleByKeys = validateTweetByKeys(tw, keys);
-        const ruleByType = validateTweetByType(tw, types);
-
-        return ruleByKeys && ruleByType;
-    }
-
-    ///addComment////добавить комментарий в массив///////////
-
-    const addComment = (id, comment) => {
-        const tweet = getTweet(id);
-
-        const newСomment = {
-            id: commentId(),
-            text: comment,
-            createdAt: new Date(),
-            author: user
-        }
-        if (validateComment(newСomment)) {
-            tweet.comments.push(newСomment)
-
-            return true;
-        }
-        return false;
-    };
-
-
-    /////// changeUser(usr: string): void//////////
-
-    const changeUser = (usr) => {
-
-        if (usr.length < 1) {
-            console.log("New user(usr) not found");
-        }
-        user = usr;
-
-    }
-
-    function arrayClone(arr) {
-        return arr.map(item => {
-            return JSON.parse(JSON.stringify(item))
-        });
-    }
-
-    return {
-        getTweets,
-        getTweet,
-        validateTweet,
-        addTweet,
-        editTweet,
-        removeTweet,
-        validateComment,
-        addComment,
-        changeUser,
-    };
-
-
-})();
-////////////////end of module///////////////////
-
-
-
-//////////getTweets check////////////////
-
-// console.log(twModule.getTweets(0, 10));
-// console.log(twModule.getTweets(10, 10));
-// console.log(twModule.getTweets(0, 10, {author: 'snow'}));
-
-////////////getTweet check////////////////
-
-// console.log(twModule.getTweet('4'));
-
-// console.log(twModule.getTweet('44')); /*ести твита с таким id нет*/
-
-
-////////////ValidateTweet check////////////////
-
-
-// console.log(twModule.validateTweet(tweets[10]))
-// console.log(twModule.validateTweet(tweets[1])) /* NOvalidated twit */
-
-
-////////////addTweet check////////////////
-
-// console.log(twModule.addTweet({text: undefined})); /* add false */
-// console.log(twModule.addTweet({text:"Это мой новый твит"}));
-
-////////////editTweet////////////////
-
-// console.log(twModule.editTweet('14','Меняю текст'));
-
-// console.log(twModule.editTweet('7','Не получится поменять текст'));
-
-
-// //////////removeTweet check////////////////
-
-// console.log(twModule.removeTweet("14"));
-
-// console.log(twModule.removeTweet("4"));
-
-// //////////validateComment check////////////////
-
-// console.log(twModule.validateComment(tweets[3].comments[0]))
-// console.log(twModule.validateComment(tweets[1].comments[16])) /* NOvalidated comment */
-
-// //////////addComment check////////////////
-
-// console.log(twModule.addComment('1', 'newcomment'));
-
-// console.log(twModule.addComment('2', 5)); /*failed to add*/
-
-
-// /////////changeUser check////////////////
-
-// console.log(twModule.changeUser("Диана"));
-
-// console.log(twModule.user)
-
-
-
