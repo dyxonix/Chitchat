@@ -37,7 +37,7 @@ main {
 
 }
 
-p, time{
+p, small, time{
     font-size: 1.3rem;
 }
 
@@ -148,6 +148,8 @@ button{
     border-radius: var(--radius);
     margin-top: 1rem;
     color:var(--gray);
+    overflow: auto; 
+    max-height: 21rem;
     min-width: 18rem;
     background-color:var(--white);
 }
