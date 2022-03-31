@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <title>task2</title>
+
+</head>
+
+<body>
+
+    <div class="page">
+
+        <header>
+            <div class="header_container">
+                <a href="#" class="logo_link">
+                    <img src="images/logo.svg" class="logo" alt="chitchat">
+                </a>
+
+                <div class="header_content">
+                    <div class="header_user">Ирина</div>
+                    <button class="btn_blue" type="button_exit">Выйти</button>
+                </div>
+            </div>
+        </header>
+
+
+        <main>
+
+
+            <div class="main_container">
+                <!-- -------- New Twit -->
+                <div class="twit_write_area">
+                    <form>
+                        <textarea class="main_textarea" maxlength="280"
+                            placeholder="Напишите что-нибудь ..."></textarea>
+                        <hr>
+                        <div class="twit_actions">
+                            <p>280</p>
+                            <button class="btn_blue" type="submit">Опубликовать</button>
+                        </div>
+                    </form>
+                </div>
+
+
+
+                <!-- -------- Feed -->
+
+                <section class="feed">
+
+                    <nav class="filter_items">
+                        <form class="filtration filter_name">
+                            <button class="filter_confirm selector_name">Применить</button>
+                        </form>
+
+
+                        <form class="filtration filter_name">
+                            <button class="selector_name">Имя</button>
+                            <ul class="list_filter">
+                                <li class="list_item"><a class="item_filtration" href="#">Автор 1</a></li>
+                                <hr>
+                                <li class="list_item"><a class="item_filtration" href="#">Автор 2</a></li>
+                                <hr>
+                                <li class="list_item"><a class="item_filtration" href="#">Автор 3</a></li>
+                                <hr>
+                                <li class="list_item"><a class="item_filtration" href="#">Автор 4</a></li>
+                            </ul>
+                        </form>
+
+
+                        <form class="filtration filter_date">
+
+                            <button class="selector_name">Дата</button>
+                            <ul class="list_filter">
+                                <li>От:<input class="date_input" type="date" value="2022-2-22" />
+                                </li>
+                                <hr>
+                                <li>До:<input class="date_input" type="date" value="2022-2-22" /></li>
+
+                            </ul>
+                        </form>
+
+
+                        <form class="filtration filter_text">
+                            <button class="selector_name">Текст
+                            </button>
+                            <ul class="list_filter">
+                                <li><input class="date_input" type="text" name="text" placeholder="Введите текст"></li>
+                                <li><input class="date_input" type="checkbox" /></li>
+                            </ul>
+                        </form>
+
+
+                        <form class="filtration filter_tag">
+                            <button class="selector_name selected">Хэштег
+                                <img class="reset" src="images/x.svg" alt="X">
+                            </button>
+                        </form>
+
+
+                    </nav>
+
+
+
+                    <!-- -------- twit -->
+
+                    <article class="twit">
+
+
+                        <div class="user_info">
+                            <h1 class="user_name">Ирина</h1>
+                            <span class="user_check">(Вы)</span>
+                        </div>
+
+                        <div class="twit_date">18.02.2022 17:46</div>
+                        <p>В рамках спецификации современных стандартов, непосредственные участники технического
+                            прогресса
+                            ассоциативно распределены по отраслям.<span class="hashtag">#datamola2022</span></p>
+
+
+                        <div class="twit_footer">
+
+                            <a href="#">
+                                <img src="images/chat.svg" alt="chat">
+                            </a>
+                            <span class="twit_comment_number">22</span>
+
+                            <div class="twit_edit">
+                                <a class="correct" href="#">
+                                    <img src="images/edit.svg" alt="edit">
+                                </a>
+
+                                <a href="#">
+                                    <img src="images/delete.svg" alt="delete">
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- -------- twit -->
+
+                    <article class="twit">
+
+                        <div class="user_info">
+                            <h1 class="user_name">Артем</h1>
+                        </div>
+
+                        <div class="twit_date">18.02.2022 15:23</div>
+                        <p>Ясность нашей позиции очевидна: базовый вектор развития <span>#development</span>
+                            позволяет оценить
+                            значение поэтапного и
+                            последовательного развития общества.</p>
+
+
+
+                        <div class="twit_footer">
+                            <a href="#">
+                                <img src="images/chat.svg" alt="chat">
+                            </a>
+                            <span class="twit_comment_number">14</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- -------- twit -->
+
+                    <article class="twit">
+
+
+
+                        <div class="user_info">
+                            <h1 class="user_name">Евгений</h1>
+                        </div>
+
+
+                        <div class="twit_date">18.02.2022 12:42</div>
+                        <p>Вот вам яркий пример современных тенденций - семантический разбор внешних
+                            противодействий
+                            обеспечивает широкому кругу (специалистов) участие в формировании инновационных
+                            методов управления
+                            процессами.<span>#datamola2022</span></p>
+
+
+                        <div class="twit_footer">
+                            <a href="#">
+                                <img src="images/chat.svg" alt="chat">
+                            </a>
+                            <span class="twit_comment_number">7</span>
+
+                        </div>
+
+                    </article>
+
+                    <!-- -------- twit -->
+
+                    <article class="twit">
+
+
+
+                        <div class="user_info">
+                            <h1 class="user_name">Gleb</h1>
+                        </div>
+
+
+                        <div class="twit_date">18.02.2022 14:01</div>
+                        <p>Ясность нашей позиции очевидна: базовый вектор развития <span>#development</span>
+                            позволяет оценить
+                            значение поэтапного и
+                            последовательного развития общества.</p>
+
+
+
+                        <div class="twit_footer">
+
+
+                            <a href="#">
+                                <img src="images/chat.svg" alt="chat">
+                            </a>
+                            <span class="twit_comment_number">4</span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- -------- twit -->
+
+                    <article class="twit">
+
+
+
+                        <div class="user_info">
+                            <h1 class="user_name">Виктория</h1>
+                        </div>
+
+
+                        <div class="twit_date">18.02.2022 14:00</div>
+                        <p>А ещё стремящиеся вытеснить традиционное производство, нанотехнологии, превозмогая
+                            сложившуюся
+                            непростую экономическую ситуацию, объединены в целые кластеры себе
+                            подобных.<span>#производство</span>
+                        </p>
+
+
+
+                        <div class="twit_footer">
+
+
+                            <a href="#">
+                                <img src="images/chat.svg" alt="chat">
+                            </a>
+                            <span class="twit_comment_number">6</span>
+
+
+                        </div>
+
+                    </article>
+
+                    <!-- -------- twit -->
+
+                    <article class="twit">
+
+
+
+                        <div class="user_info">
+                            <h1 class="user_name">Артем</h1>
+                        </div>
+
+
+                        <div class="twit_date">18.02.2022 12:33</div>
+                        <p>А также предприниматели в сети интернет, вне зависимости от их уровня, должны быть
+                            обнародованы.
+                            Прежде всего, глубокий уровень погружения, в своём классическом представлении,
+                            допускает внедрение
+                            экспериментов, поражающих по своей масштабности и грандиозности.</p>
+
+
+
+                        <div class="twit_footer">
+
+                            <a href="#">
+                                <img src="images/chat.svg" alt="chat">
+                            </a>
+                            <span class="twit_comment_number">4</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- -------- twit -->
+
+                    <article class="twit">
+
+
+
+                        <div class="user_info">
+                            <h1 class="user_name">Евгений</h1>
+                        </div>
+
+
+                        <div class="twit_date">17.02.2022 23:49</div>
+                        <p>Каждый из нас понимает очевидную вещь: современная методология разработки требует от
+                            нас анализа
+                            прогресса профессионального сообщества.</p>
+
+
+
+                        <div class="twit_footer">
+
+                            <a>
+                                <img class="no_comments" src="images/chat.svg" alt="chat">
+                            </a>
+                            <span class="twit_comment_number">0</span>
+
+
+                        </div>
+
+                    </article>
+
+                    <!-- -------- twit -->
+
+                    <article class="twit">
+
+
+
+                        <div class="user_info">
+                            <h1 class="user_name">Артем</h1>
+                        </div>
+
+
+                        <div class="twit_date">17.02.2022 19:12</div>
+                        <p>Задача организации, в особенности же перспективное планирование не даёт нам иного
+                            выбора, кроме
+                            определения экспериментов, поражающих по своей масштабности и грандиозности. Таким
+                            образом, укрепление
+                            и развитие внутренней структуры предполагает независимые способы реализации новых
+                            предложений.</p>
+
+
+
+                        <div class="twit_footer">
+
+
+                            <a href="#">
+                                <img src="images/chat.svg" alt="chat">
+                            </a>
+                            <span class="twit_comment_number">4</span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- -------- twit -->
+
+                    <article class="twit">
+
+
+                        <div class="user_info">
+                            <h1 class="user_name">Лиза</h1>
+                        </div>
+
+
+                        <div class="twit_date">17.02.2022 18:05</div>
+                        <p>Вот вам яркий пример современных тенденций - семантический разбор внешних
+                            противодействий
+                            обеспечивает широкому кругу (специалистов) участие в формировании инновационных
+                            методов управления
+                            процессами.</p>
+
+
+
+                        <div class="twit_footer">
+
+                            <div class="twit_comment">
+                                <a href="#">
+                                    <img src="images/chat.svg" alt="chat">
+                                </a>
+                                <span class="twit_comment_number">2</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <!-- -------- twit -->
+
+                    <article class="twit">
+
+                        <div class="user_info">
+                            <h1 class="user_name">Капитан</h1>
+                        </div>
+
+
+                        <div class="twit_date">17.02.2022 9:22</div>
+                        <p><span>#развитие</span> Высокий уровень
+                            вовлечения представителей целевой аудитории является четким доказательством простого
+                            факта:
+                            разбавленное изрядной долей эмпатии, рациональное мышление играет определяющее
+                            значение для позиций,
+                            занимаемых участниками в отношении поставленных задач.</p>
+
+
+
+                        <div class="twit_footer">
+
+                            <div class="twit_comment">
+                                <a href="#">
+                                    <img src="images/chat.svg" alt="chat">
+                                </a>
+                                <span class="twit_comment_number">4</span>
+                            </div>
+                        </div>
+
+                    </article>
+
+                    <!-- -------- Feed end -->
+
+                </section>
+
+                <nav class="more">
+                    <button class="load_more selector_name">Загрузить еще</button>
+                </nav>
+
+            </div>
+
+        </main>
+
+
+
+        <!-- -------- Footer -->
+        <footer>
+            <p>CHITCHAT</p>
+            <p>Версия 1.0 22.02.2022</p>
+            <div class="contacts">
+                <p>Mariya Ivahnenko</p>
+                <p>Contact:<a href="mailto:masha.vern@gmail.com" target="_blank">masha.vern@gmail.com</a></p>
+            </div>
+        </footer>
+
+
+    </div>
+
+
+
+</body>
+
+</html>
