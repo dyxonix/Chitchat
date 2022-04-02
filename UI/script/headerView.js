@@ -14,6 +14,6 @@ class HeaderView {
     }
 }
 
-
+export default HeaderView;
 
 

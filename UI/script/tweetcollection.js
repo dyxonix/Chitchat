@@ -1,5 +1,7 @@
 "use strict"
 
+import Tweet from "./tweet.js";
+
 class TweetCollection {
 
     user = "";
@@ -246,3 +248,4 @@ class TweetCollection {
     };
 
 }
+export default TweetCollection;

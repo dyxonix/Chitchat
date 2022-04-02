@@ -1,8 +1,17 @@
 "use script"
 
-const tweetColl = new TweetCollection([...tw1, ...tw2, ...tw3, ...tw4, ...tw6, ...tw7, ...tw8, ...tw9, ...tw10, ...tw11]);
-//from list.js
-const tweetsModel = tweetColl.getPage();
+import TweetCollection from "./tweetсollection.js";
+import HeaderView from "./HeaderView.js";
+import TweetView from "./tweetView.js";
+import CommentsView from "./commentsView.js";
+import TweetFeedView from "./mainView.js";
+import tweets from "./tweetbase.js";
+
+
+const tweetColl = new TweetCollection();
+const tweetsModel = tweetColl.addAll(tweets);
+
+console.log(tweetColl);
 
 const headerView = new HeaderView("headerview");
 const feedview = new TweetFeedView('tweet');
@@ -52,6 +61,17 @@ feedview.display(tws); // output tweetfeed when loading the script
 
 
 //for changing the view of hashtags in the text on pages
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+setCurrentUser("Мария"); // Отобразить текущего пользователя
+addTweet("Hi, this is my new tweet"); // Добавить твит
+editTweet("7", "New text for my tweet"); // Изменить твит по ID
+removeTweet("7"); // Удалить твит по ID
+getFeed(0, 7, { hashtags: "net" }); // Показать список по фильтру
+showTweet("1"); // получить твит по ID
+
 (function () {
     'use strict';
 
@@ -64,12 +84,3 @@ feedview.display(tws); // output tweetfeed when loading the script
     }
 
 }(this, this.document));
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-// setCurrentUser("Мария"); // Отобразить текущего пользователя
-// addTweet("Hi, this is my new tweet"); // Добавить твит
-// editTweet("7", "New text for my tweet"); // Изменить твит по ID
-// removeTweet("7"); // Удалить твит по ID
-// getFeed(0, 7, { hashtags: "net" }); // Показать список по фильтру
-// showTweet("1"); // получить твит по ID

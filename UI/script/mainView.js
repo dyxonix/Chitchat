@@ -1,5 +1,7 @@
 "use script"
 
+import TweetCollection from "./tweetcollection.js";
+
 const formatDate = (date) => {
     const checkDate = (i) => {
         if (i < 10) {
@@ -105,3 +107,5 @@ const allautors = [
 const filterview = new FilterView("filter");
 
 filterview.setAuthors(allautors)
+
+export default TweetFeedView;

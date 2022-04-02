@@ -1,5 +1,7 @@
 "use strict"
 
+import TweetCollection from './tweetcollection.js';
+import Comment from './comment.js';
 
 class Tweet {
 
@@ -55,3 +57,5 @@ class Tweet {
     }
 
 }
+
+export default Tweet;
