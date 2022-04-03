@@ -1,7 +1,7 @@
 "use strict"
 
 import Tweet from "./tweet";
-import {uniId} from './tweetbase.js';
+import { uniId } from './tweetbase.js';
 
 export default class TweetCollection {
 
@@ -193,7 +193,7 @@ export default class TweetCollection {
 
         if (Tweet.validate(tweet)) {
 
-            if (this.user === tweet.author && typeof txt === 'string'
+            if (TweetCollection.user === tweet.author && typeof txt === 'string'
                 && txt.length <= TweetCollection.maxTextLength) {
                 tweet.text = txt;
                 return true;
@@ -205,7 +205,7 @@ export default class TweetCollection {
     remove(id) {
         const tweet = this.get(id);
         if (tweet) {
-            if (this.user === tweet.author) {
+            if (TweetCollection.user === tweet.author) {
                 const index = this._twscopy.findIndex((tweet) => tweet.id === id);
                 this._twscopy.splice(index, 1);
                 return true;

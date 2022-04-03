@@ -8,10 +8,10 @@ export const commentId = () => `${c++}`;
 
 export const tweets = [
     {
-        id: uniId(),
+        id: '77',
         text: 'В рамках спецификации современных стандартов, непосредственные участники технического прогресса ассоциативно распределены по отраслям.#datamola2022',
-        createdAt: new Date("2022-02-18T02:17:46"),
-        author: 'Ирина',
+        createdAt: new Date("2022-03-27T02:17:46"),
+        author: 'Мария',
         comments: [
 
             {

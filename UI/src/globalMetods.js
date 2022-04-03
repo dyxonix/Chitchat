@@ -4,8 +4,8 @@ import TweetCollection from "./tweetcollection.js";
 import HeaderView from "./headerView.js";
 import TweetView from "./tweetView.js";
 import CommentsView from "./commentsView.js";
-import {TweetFeedView} from "./mainView.js";
-import {tweets} from "./tweetbase.js";
+import { TweetFeedView } from "./mainView.js";
+import { tweets } from "./tweetbase.js";
 
 
 const tweetColl = new TweetCollection([...tweets]);
@@ -61,11 +61,11 @@ export function showTweet(id) {
 
 setCurrentUser("Мария"); // Отобразить текущего пользователя
 feedview.display(tweetColl.getPage(0, 10)); // output tweetfeed when loading the script
-addTweet("Hi, this is my new tweet"); // Добавить твит
-editTweet("7", "New text for my tweet"); // Изменить твит по ID
-removeTweet("7"); // Удалить твит по ID
-getFeed(0, 7, { hashtags: "net" }); // Показать список по фильтру
-showTweet("5"); // получить твит по ID
+//addTweet("Hi, this is my new tweet"); // Добавить твит
+//editTweet("77", "New text for my tweet"); // Изменить твит по ID
+// removeTweet("77"); // Удалить твит по ID
+// getFeed(0, 7, { hashtags: "development" }); // Показать список по фильтру
+// showTweet("5"); // получить твит по ID
 
 
 //for changing the view of hashtags in the text on page
