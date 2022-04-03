@@ -56,22 +56,20 @@ function showTweet(id) {
 }
 
 
-feedview.display(tws); // output tweetfeed when loading the script
-
-
-
-//for changing the view of hashtags in the text on pages
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
 setCurrentUser("Мария"); // Отобразить текущего пользователя
+feedview.display(tweetColl.getPage(0, 10)); // output tweetfeed when loading the script
 addTweet("Hi, this is my new tweet"); // Добавить твит
-editTweet("7", "New text for my tweet"); // Изменить твит по ID
-removeTweet("7"); // Удалить твит по ID
-getFeed(0, 7, { hashtags: "net" }); // Показать список по фильтру
-showTweet("1"); // получить твит по ID
+//editTweet("7", "New text for my tweet"); // Изменить твит по ID
+// removeTweet("7"); // Удалить твит по ID
+// getFeed(0, 7, { hashtags: "net" }); // Показать список по фильтру
+// showTweet("1"); // получить твит по ID
 
+
+//for changing the view of hashtags in the text on pages
 (function () {
     'use strict';
 
