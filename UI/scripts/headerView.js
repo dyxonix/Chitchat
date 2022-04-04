@@ -1,6 +1,7 @@
-"use script"
+"use strict"
 
-export default class HeaderView {
+
+class HeaderView {
 
     constructor(containerId) {
         this.containerId = containerId;
@@ -20,5 +21,3 @@ export default class HeaderView {
         }
     }
 }
-
-

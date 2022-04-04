@@ -2,15 +2,16 @@
 
 let i = 1;
 let c = 2022;
-export const uniId = () => `${i++}`;
-export const commentId = () => `${c++}`;
+const uniId = () => `${i++}`;
+const commentId = () => `${c++}`;
 
 
-export const tweets = [
+// export 
+const tweets = [
     {
-        id: '77',
+        id: "77",
         text: 'В рамках спецификации современных стандартов, непосредственные участники технического прогресса ассоциативно распределены по отраслям.#datamola2022',
-        createdAt: new Date("2022-03-27T02:17:46"),
+        createdAt: new Date("2022-03-26T02:17:46"),
         author: 'Мария',
         comments: [
 
@@ -332,7 +333,7 @@ export const tweets = [
         id: uniId(),
         text: ' Для современного мира повышение уровня гражданского сознания не оставляет шанса для инновационных методов управления процессами.',
         createdAt: new Date('2022-03-14T18:15:44'),
-        author: 'Trojan',
+        author: 'Мария',
         comments: [
 
             {

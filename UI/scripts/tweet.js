@@ -1,9 +1,6 @@
 "use strict"
 
-import TweetCollection from './tweetcollection.js';
-import Comment from './comment.js';
-
-export default class Tweet {
+class Tweet {
 
     constructor(text, id, createdAt, author, comments) {
 

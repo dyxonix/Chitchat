@@ -1,21 +1,10 @@
 "use strict"
 
-import Tweet from "./tweet";
-import { uniId } from './tweetbase.js';
-
-export default class TweetCollection {
+class TweetCollection {
 
     static user = "";
 
     static maxTextLength = 280;
-
-    // get user() {
-    //     return _user;
-    // }
-
-    // set user(uservalue) {
-    //     _user = uservalue;
-    // }
 
     _twscopy = [];
 
@@ -190,7 +179,6 @@ export default class TweetCollection {
 
     edit = (id, txt) => {
         const tweet = this.get(id);
-
         if (Tweet.validate(tweet)) {
 
             if (TweetCollection.user === tweet.author && typeof txt === 'string'
@@ -251,4 +239,24 @@ export default class TweetCollection {
         return false;
     };
 
+}
+
+
+const formatDate = (date) => {
+    if (!date) {
+        return;
+    }
+
+    const checkDate = (i) => {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    };
+
+    return `${checkDate(new Date(date).getDate())}.${checkDate(
+        new Date(date).getMonth() + 1
+    )}.${checkDate(new Date(date).getFullYear())}, ${checkDate(
+        new Date(date).getHours()
+    )}:${checkDate(new Date(date).getMinutes())}`;
 }

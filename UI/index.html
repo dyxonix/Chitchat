@@ -36,7 +36,7 @@
         <main>
 
 
-            <div class="main_container">
+            <div id="selectedtweet" class="main_container">
                 <!-- -------- New Twit -->
                 <div class="twit_write_area">
                     <form>
@@ -124,6 +124,9 @@
                 </nav>
 
             </div>
+            <div id="allcomments" class="main_container"></div>
+
+            </div>
 
         </main>
 
@@ -141,18 +144,16 @@
 
 
     </div>
-    <script src='./dist/bundle.js'></script>
-    <!-- <script type="module" src="./scr/tweetcollection.js"></script>$ ./node_modules/.bin/webpack
-    <script type="module" src="./scr/globalMetods.js"></script>
-    <script type="module" src="./scr/tweet.js"></script>
-    <script type="module" src="./scr/comment.js"></script>
-    <script type="module" src="./scr/tweetbase.js"></script>
-    <script type="module" src="./scr/headerView.js"></script>
-    <script type="module" src="./scr/tweetView.js"></script>
-    <script type="module" src="./scr/commentsView.js"></script>
-    <script type="module" src="./scr/mainView.js"></script> -->
 
-
+    <script src="scripts/tweetbase.js"></script>
+    <script src="scripts/tweet.js"></script>
+    <script src="scripts/comment.js"></script>
+    <script src="scripts/tweetCollection.js"></script>
+    <script src="scripts/headerView.js"></script>
+    <script src="scripts/feedView.js"></script>
+    <script src="scripts/filterView.js"></script>
+    <script src="scripts/tweetView.js"></script>
+    <script src="scripts/globalMetods.js"></script>
 </body>
 
 </html>
