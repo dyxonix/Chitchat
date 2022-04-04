@@ -1,3 +1,6 @@
+/* eslint-disable consistent-return */
+/* eslint-disable indent */
+/* eslint-disable no-unused-vars */
 "use strict"
 
 class Tweet {

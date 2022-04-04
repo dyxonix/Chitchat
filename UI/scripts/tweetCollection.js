@@ -39,7 +39,7 @@ class TweetCollection {
                 id: (value) => typeof value === 'string',
                 text: (value) => typeof value === 'string' && value.length <= TweetCollection.maxTextLength,
                 createdAt: (value) => value instanceof Date,
-                author: (value) => typeof value === 'string',
+                author: (value) => typeof value === 'string'&& value.length != 0 ,
                 comments: (value) => Array.isArray(value)
             },
             keys: ['id', 'text', 'createdAt', 'author', 'comments']
@@ -173,6 +173,7 @@ class TweetCollection {
             return true;
         }
         return false;
+
     };
 
 

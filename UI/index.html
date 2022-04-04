@@ -36,25 +36,21 @@
         <main>
 
 
-            <div id="selectedtweet" class="main_container">
+            <div class="main_container">
                 <!-- -------- New Twit -->
-                <div class="twit_write_area">
-                    <form>
-                        <textarea class="main_textarea" maxlength="280"
-                            placeholder="Напишите что-нибудь ..."></textarea>
-                        <hr>
-                        <div class="twit_actions">
-                            <p>280</p>
-                            <button class="btn_blue" type="submit">Опубликовать</button>
-                        </div>
-                    </form>
-                </div>
+                <div id="inputs">
+                    <div id="filtration" class="twit_write_area">
+                        <form>
+                            <textarea class="main_textarea" maxlength="280"
+                                placeholder="Напишите что-нибудь ..."></textarea>
+                            <hr>
+                            <div class="twit_actions">
+                                <p>280</p>
+                                <button class="btn_blue" type="submit">Опубликовать</button>
+                            </div>
+                        </form>
+                    </div>
 
-
-
-                <!-- -------- Feed -->
-
-                <section class="feed">
 
                     <nav class="filter_items">
 
@@ -97,15 +93,22 @@
                             <button class="selector_name selected">Хэштег
                                 <img class="reset" src="images/x.svg" alt="X">
                             </button>
-                            <!-- <ul class="list_filter">
-                                    <li><input class="date_input" type="text" name="text" placeholder="Введите тэг">
-                                    </li>
-                                    <li><input class="date_input" type="checkbox" /></li>
-                                </ul> -->
+                            <ul class="list_filter">
+                                <li><input class="date_input" type="text" name="text" placeholder="Введите тэг">
+                                </li>
+                                <li><input class="date_input" type="checkbox" /></li>
+                            </ul>
                         </form>
 
 
                     </nav>
+                </div>
+                <!-- -------- Feed -->
+
+
+                <section class="feed">
+
+
 
 
 
@@ -114,19 +117,18 @@
 
                     <div id="tweet">
 
+                    </div>
 
-                        <!-- -------- Feed -->
+
+                    <!-- -------- Feed -->
 
                 </section>
-
-                <nav class="more">
-                    <button class="load_more selector_name">Загрузить еще</button>
-                </nav>
-
             </div>
+            <nav class="more">
+                <button class="load_more selector_name">Загрузить еще</button>
+            </nav>
+
             <div id="allcomments" class="main_container"></div>
-
-            </div>
 
         </main>
 

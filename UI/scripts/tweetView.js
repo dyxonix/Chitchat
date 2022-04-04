@@ -13,7 +13,6 @@ class TweetView {
 
     const tweetView = document.getElementById(this.containerId);
     if (tweetView) {
-        console.log(tweetView);
       tweetView.innerHTML =
                 `
             <section class="twit">
