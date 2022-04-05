@@ -1,10 +1,15 @@
-"use strict"
+/* eslint-disable linebreak-style */
+/* eslint-disable no-console */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-undef */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable linebreak-style */
 
 // eslint-disable-next-line no-unused-vars
 class Comment {
   constructor(text, id, createdAt, author) {
     this._id = id || uniId();
-    this._text = text || "";
+    this._text = text || '';
     this._author = author || TweetCollection.user;
     this._createAt = createdAt || new Date();
   }
@@ -32,7 +37,6 @@ class Comment {
   set author(author) {
     console.log('can\'t set author name');
   }
-
 
   static validate(com) {
     if (!com) {

@@ -1,5 +1,6 @@
-"use strict"
-
+/* eslint-disable prefer-destructuring */
+/* eslint-disable linebreak-style */
+/* eslint-disable no-undef */
 
 // eslint-disable-next-line no-unused-vars
 class TweetFeedView {
@@ -25,7 +26,7 @@ class TweetFeedView {
                     <h1 class="user_name">${item.author}</h1>
                     ${item.author === user
     ? '<span class="user_check">(Вы)</span>'
-    : ""
+    : ''
 }
                 </div>
         
@@ -39,13 +40,11 @@ class TweetFeedView {
                     <span class="twit_comment_number">${item.comments ? item.comments.length : ''}</span>
                     ${item.author === user
     ? ' <div class="twit_edit"> <a class="correct" href="#"><img src="images/edit.svg" alt="edit"></a><a href="#"><img src="images/delete.svg" alt="delete"></a></div>'
-    : ""
+    : ''
 }
                 </div>
                 </article>
-                `
-      ).join('\n');
+                `).join('\n');
     }
-
   }
 }
