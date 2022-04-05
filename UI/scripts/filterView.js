@@ -1,6 +1,6 @@
+/* eslint-disable max-classes-per-file */
 /* eslint-disable lines-around-directive */
 /* eslint-disable no-undef */
-"use strict"
 
 class FiltersView {
   constructor(containerId) {
@@ -10,7 +10,9 @@ class FiltersView {
   display(fltr) {
     const filtersView = document.getElementById(this.containerId);
 
-    filtersView.innerHTML = fltr ? `` : `
+    filtersView.innerHTML = fltr
+      ? ''
+      : `
 
     <div id="filtration" class="twit_write_area">
                         <form>
@@ -73,7 +75,7 @@ class FiltersView {
                             </ul> -->
                         </form>
                         </nav>
-    `
+    `;
   }
 }
 
@@ -92,10 +94,14 @@ class FilterView {
     const filterAuthors = document.getElementById(this.containerId);
 
     if (filterAuthors) {
-      filterAuthors.innerHTML = author.map((item) => `
+      filterAuthors.innerHTML = author
+        .map(
+          (item) => `
                 <li class="list_item"><a class="item_filtration" href="#">${item}</a></li>
                     <hr>
-            `).join('\n');
+            `,
+        )
+        .join('\n');
     }
   }
 

@@ -1,5 +1,5 @@
-"use strict";
-
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-classes-per-file */
 
 class TweetView {
   constructor(containerId) {
@@ -13,8 +13,7 @@ class TweetView {
 
     const tweetView = document.getElementById(this.containerId);
     if (tweetView) {
-      tweetView.innerHTML =
-                `
+      tweetView.innerHTML = `
             <section class="twit">
 
                 <button class="twit_back" type="button_exit"><img src="images/left.svg" alt="back">На
@@ -33,7 +32,9 @@ class TweetView {
                 <a href="#">
                 <img src="images/chat.svg" alt="chat">
                 </a>
-                <span class="twit_comment_number">${tw.comments ? tw.comments.length : ''}</span>
+                <span class="twit_comment_number">${
+  tw.comments ? tw.comments.length : ''
+}</span>
                 </div>
                 </article>
                 <article id="allcomments" class="comments_area"> </article>
@@ -61,8 +62,9 @@ class CommentsView {
     const comView = document.getElementById(this.containerId);
 
     if (comView) {
-      comView.innerHTML = com.map((cm) =>
-        `
+      comView.innerHTML = com
+        .map(
+          (cm) => `
                 
                 <div class="comment">
                 <div class="comment_info">
@@ -73,8 +75,9 @@ class CommentsView {
                 <hr>
                 </div>
                 </article>
-            `
-      ).join('\n');
+            `,
+        )
+        .join('\n');
     }
   }
 }
