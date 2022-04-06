@@ -3,79 +3,72 @@
 /* eslint-disable lines-around-directive */
 /* eslint-disable no-undef */
 
+class TextAreaView {
+  constructor(containerId) {
+    this.containerId = containerId;
+  }
+
+  display(textArea) {
+    const textView = document.getElementById(this.containerId);
+
+    if (!TweetCollection.user) {
+      document.getElementById('write_area').style.display = 'none';
+    }
+    textView.innerHTML = textArea
+      ? ''
+      : `
+      <form>
+        <textarea class="main_textarea" maxlength="280"
+         placeholder="Напишите что-нибудь ..."></textarea>
+          <hr>
+          <div class="twit_actions">
+          <p>280</p>
+          <button class="btn_blue" type="submit">Опубликовать</button>
+          </div>
+      </form>
+    `
+
+  }
+}
+
 class FiltersView {
   constructor(containerId) {
     this.containerId = containerId;
   }
 
+
   display(fltr) {
     const filtersView = document.getElementById(this.containerId);
 
+
     filtersView.innerHTML = fltr
       ? ''
-      : `
+      : ` <nav class="filter_items">
+      <form class="filtration">
 
-    <div id="filtration" class="twit_write_area">
-                        <form>
-                            <textarea class="main_textarea" maxlength="280"
-                                placeholder="Напишите что-нибудь ..."></textarea>
-                            <hr>
-                            <div class="twit_actions">
-                                <p>280</p>
-                                <button class="btn_blue" type="submit">Опубликовать</button>
-                            </div>
-                        </form>
-                    </div>
-
-
-                    <nav class="filter_items">
-
-                        <form class="filtration filter_name">
-                            <button class="filter_confirm selector_name">Применить</button>
-                        </form>
-
-                        <form class="filtration filter_name">
-                            <button class="selector_name">Имя</button>
-                            <ul id="filter" class="list_filter">
-                            </ul>
-                        </form>
-
-
-
-                        <form class="filtration filter_date">
-
-                            <button class="selector_name">Дата</button>
-                            <ul class="list_filter">
-                                <li>От:<input class="date_input" type="date" value="2022-02-22" />
-                                </li>
-                                <hr>
-                                <li>До:<input class="date_input" type="date" value="2022-02-22" /></li>
-                            </ul>
-                        </form>
-
-
-                        <form class="filtration filter_text">
-                            <button class="selector_name">Текст
-                            </button>
-                            <ul class="list_filter">
-                                <li><input class="date_input" type="text" name="text" placeholder="Введите текст">
-                                </li>
-                                <li><input class="date_input" type="checkbox" /></li>
-                            </ul>
-                        </form>
-
-
-                        <form class="filtration filter_tag">
-                            <button class="selector_name selected">Хэштег
-                                <img class="reset" src="images/x.svg" alt="X">
-                            </button>
-                            <!-- <ul class="list_filter">
-                                <li><input class="date_input" type="text" name="text" placeholder="Введите тэг">
-                                </li>
-                                <li><input class="date_input" type="checkbox" /></li>
-                            </ul> -->
-                        </form>
-                        </nav>
+      <div class="list_filter">
+       <label id="show_filter">Автор</label>
+       <select id="filter" class="list_filter">
+        </select>
+        </div>
+        <div class="list_filter">
+        <label id="show_filter">Дата</label>       
+        <input class="input" type="date"/>                
+          <input class="input" type="date"/>
+          </div>               
+          <div class="list_filter">
+           <label id="show_filter">Текст</label>
+            
+          <input  class="input" type="text" name="text" placeholder="Введите текст"></input>
+          </div>
+          <div class="list_filter">
+           <label id="show_filter">Хэштег</label>
+           
+         <input class="input" type="text" name="text" placeholder="Введите тэг"></input>
+         </div>
+      </form>
+      <button id="confirm" class="filter_confirm selector_name">Применить</button>
+    </nav>
     `;
   }
 }
@@ -98,9 +91,7 @@ class FilterView {
       filterAuthors.innerHTML = author
         .map(
           (item) => `
-                <li class="list_item"><a class="item_filtration" href="#">${item}</a></li>
-                    <hr>
-            `,
+                <option class="list_item"><a class="item_filtration" href="#">${item}</a></option>`,
         )
         .join('\n');
     }

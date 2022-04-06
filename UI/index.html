@@ -38,111 +38,48 @@
 
             <div class="main_container">
                 <!-- -------- New Twit -->
-                <div id="inputs">
-                    <div id="filtration" class="twit_write_area">
-                        <form>
-                            <textarea class="main_textarea" maxlength="280"
-                                placeholder="Напишите что-нибудь ..."></textarea>
-                            <hr>
-                            <div class="twit_actions">
-                                <p>280</p>
-                                <button class="btn_blue" type="submit">Опубликовать</button>
-                            </div>
-                        </form>
-                    </div>
-
-
-                    <nav class="filter_items">
-
-                        <form class="filtration filter_name">
-                            <button class="filter_confirm selector_name">Применить</button>
-                        </form>
-
-                        <form class="filtration filter_name">
-                            <button class="selector_name">Имя</button>
-                            <ul id="filter" class="list_filter">
-                            </ul>
-                        </form>
+                <div id="write_area" class="twit_write_area"> </div>
 
 
 
-                        <form class="filtration filter_date">
+                <nav id="inputs" class="filter_items">
+                </nav>
 
-                            <button class="selector_name">Дата</button>
-                            <ul class="list_filter">
-                                <li>От:<input class="date_input" type="date" value="2022-02-22" />
-                                </li>
-                                <hr>
-                                <li>До:<input class="date_input" type="date" value="2022-02-22" /></li>
-                            </ul>
-                        </form>
-
-
-                        <form class="filtration filter_text">
-                            <button class="selector_name">Текст
-                            </button>
-                            <ul class="list_filter">
-                                <li><input class="date_input" type="text" name="text" placeholder="Введите текст">
-                                </li>
-                                <li><input class="date_input" type="checkbox" /></li>
-                            </ul>
-                        </form>
-
-
-                        <form class="filtration filter_tag">
-                            <button class="selector_name selected">Хэштег
-                                <img class="reset" src="images/x.svg" alt="X">
-                            </button>
-                            <ul class="list_filter">
-                                <li><input class="date_input" type="text" name="text" placeholder="Введите тэг">
-                                </li>
-                                <li><input class="date_input" type="checkbox" /></li>
-                            </ul>
-                        </form>
-
-
-                    </nav>
-                </div>
                 <!-- -------- Feed -->
 
 
                 <section class="feed">
 
 
-
-
-
                     <!-- -------- twit -->
-
-
                     <div id="tweet">
-
+                        <!-- <p class="load_more selector_name"> Нет твиттов </p> -->
                     </div>
 
-
                     <!-- -------- Feed -->
-
+                    <nav class="more">
+                        <button id="more" class="load_more selector_name">Загрузить еще</button>
+                    </nav>
                 </section>
+
             </div>
-            <nav class="more">
-                <button class="load_more selector_name">Загрузить еще</button>
-            </nav>
+    </div>
 
-            <div id="allcomments" class="main_container"></div>
+    <div id="allcomments" class="main_container"></div>
 
-        </main>
+    </main>
 
 
 
-        <!-- -------- Footer -->
-        <footer>
-            <p>CHITCHAT</p>
-            <p>Версия 1.0 22.02.2022</p>
-            <div class="contacts">
-                <p>Mariya Ivahnenko</p>
-                <p>Contact:<a href="mailto:masha.vern@gmail.com" target="_blank">masha.vern@gmail.com</a></p>
-            </div>
-        </footer>
+    <!-- -------- Footer -->
+    <footer>
+        <p>CHITCHAT</p>
+        <p>Версия 1.0 22.02.2022</p>
+        <div class="contacts">
+            <p>Mariya Ivahnenko</p>
+            <p>Contact:<a href="mailto:masha.vern@gmail.com" target="_blank">masha.vern@gmail.com</a></p>
+        </div>
+    </footer>
 
 
     </div>
