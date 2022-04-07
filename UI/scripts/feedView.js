@@ -2,7 +2,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-undef */
 
-// eslint-disable-next-line no-unused-vars
 class TweetFeedView {
   constructor(containerId) {
     this.containerId = containerId;

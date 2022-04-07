@@ -1,6 +1,5 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 /* eslint-disable max-classes-per-file */
 
 class TweetView {

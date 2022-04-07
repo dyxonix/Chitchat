@@ -5,7 +5,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable linebreak-style */
 
-// eslint-disable-next-line no-unused-vars
 class Comment {
   constructor(text, id, createdAt, author) {
     this._id = id || uniId();

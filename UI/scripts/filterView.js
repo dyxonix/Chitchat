@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable max-classes-per-file */
 /* eslint-disable lines-around-directive */
 /* eslint-disable no-undef */
@@ -75,7 +74,6 @@ class FiltersView {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
 class FilterView {
   constructor(containerId) {
     this.containerId = containerId;
@@ -104,7 +102,6 @@ class FilterView {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
 const allauthors = [
   'Ирина',
   'Мария',

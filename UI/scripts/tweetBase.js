@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-plusplus */
 let i = 1;
 let c = 2022;
