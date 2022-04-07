@@ -16,10 +16,7 @@ class TweetFeedView {
 
     // eslint-disable-next-line no-undef
     const tweetfeedView = document.getElementById(this.containerId);
-    document.getElementById('more').style.opacity ='1';
-  
-
-    tweetfeedView
+    document.getElementById('more').style.opacity = '1';
 
     if (tweetfeedView) {
       const user = TweetCollection.user;
@@ -49,8 +46,6 @@ class TweetFeedView {
                 </div>
                 </article>
                 `).join('\n');
-
-
     }
   }
 }

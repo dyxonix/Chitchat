@@ -66,7 +66,16 @@ li {
 input {
     outline: none;
     border: none;
-    background-color: var(--white);
+    
+}
+
+.input_container{
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin: 1rem 2rem;
+    color:var(--gray);
+    max-height: 21rem;
+    background-color:var(--white);
 }
 
 
@@ -90,6 +99,7 @@ input {
 .input {
     margin: 1rem;
     padding: 0.5rem;
+    max-width: 14rem;
     border: 3px solid #ecedee;
 
 }
@@ -150,18 +160,12 @@ button {
 /******************************filter************************** */
 
 .list_filter {
-    padding: 1rem;
     display: flex;
-    border-radius: var(--radius);
-    margin-top: 1rem;
+    margin: 1rem 0;
     color: var(--gray);
-    max-height: 21rem;
-    min-width: 18rem;
+    max-height: 22rem;
+    min-width: 25rem;
     flex-direction: column;
-}
-
-.show_filter {
-    position: ;
 }
 
 
@@ -201,7 +205,6 @@ header {
     display: flex;
     text-align: center;
     justify-content: space-between;
-    margin: 0 0.5rem;
 }
 
 
@@ -211,8 +214,7 @@ header {
 }
 
 .filter_items {
-    margin-top: 5rem;
-    margin-left: auto;
+    margin: 10rem auto;
 }
 
 .selector_name {
@@ -409,9 +411,10 @@ header {
     border-radius: 3px;
     background-color: var(--white);
     color: var(--primary);
-    position: absolute;
-    left: 46%;
-
+    margin-top: 2rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #more {
@@ -422,6 +425,12 @@ header {
     font-size: 1.6rem;
     min-width: 15rem;
     font-weight: 500;
+    color: var(--gray);
+}
+
+.none{
+    position: relative;
+    text-align: center;
 }
 
 
@@ -488,12 +497,9 @@ footer {
 
 
 
-    .filter_items {
-        flex-direction: column;
-    }
-
     .filtration {
         margin: 0.5rem;
+        flex-direction: column;
     }
 
     .main_container {

@@ -26,8 +26,7 @@ class TextAreaView {
           <button class="btn_blue" type="submit">Опубликовать</button>
           </div>
       </form>
-    `
-
+    `;
   }
 }
 
@@ -36,39 +35,42 @@ class FiltersView {
     this.containerId = containerId;
   }
 
-
   display(fltr) {
     const filtersView = document.getElementById(this.containerId);
 
-
     filtersView.innerHTML = fltr
       ? ''
-      : ` <nav class="filter_items">
+      : `
       <form class="filtration">
 
       <div class="list_filter">
        <label id="show_filter">Автор</label>
-       <select id="filter" class="list_filter">
+       <div class="input_container"> 
+       <select class="input" id="filter" class="list_filter">
         </select>
         </div>
+        </div>
         <div class="list_filter">
-        <label id="show_filter">Дата</label>       
+        <label id="show_filter">Дата</label>
+        <div class="input_container">        
         <input class="input" type="date"/>                
           <input class="input" type="date"/>
+          </div>
           </div>               
           <div class="list_filter">
            <label id="show_filter">Текст</label>
-            
-          <input  class="input" type="text" name="text" placeholder="Введите текст"></input>
+          <div class="input_container"> 
+          <input class="input" type="text" name="text" placeholder="Введите текст"></input>
+          </div> 
           </div>
           <div class="list_filter">
            <label id="show_filter">Хэштег</label>
-           
+           <div class="input_container"> 
          <input class="input" type="text" name="text" placeholder="Введите тэг"></input>
+         </div>
          </div>
       </form>
       <button id="confirm" class="filter_confirm selector_name">Применить</button>
-    </nav>
     `;
   }
 }

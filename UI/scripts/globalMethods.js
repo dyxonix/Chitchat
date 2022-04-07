@@ -21,7 +21,6 @@ const tweetView = new TweetView('tweet');
 
 const commentView = new CommentsView('allcomments');
 
-
 function setFilter(author) {
   filtersView.display();
   texareaView.display();
@@ -29,7 +28,7 @@ function setFilter(author) {
 }
 
 function getCurrentFilter() {
-  //mocked filter
+  // mocked filter
   return filterConfig;
 }
 
@@ -85,27 +84,25 @@ function showTweet(id) {
   }
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////
+/// //////////////////////////////////////////////////////////////////////////////////////
 
 setCurrentUser('Мария'); // Отобразить текущего пользователя
 
-
-// setFilter(allauthors); // Добавить список авторов
+setFilter(allauthors); // Добавить список авторов
 
 getFeed(); // Показать список по фильтру
 
-//addTweet('Hi, this is my new tweet', TweetCollection.user); // Добавить твит
+// addTweet('Hi, this is my new tweet', TweetCollection.user); // Добавить твит
 
 // editTweet('77', 'New text for my tweet'); // Изменить твит по ID
 
 // removeTweet('77'); // Удалить твит по ID
 
-//showTweet('1'); // получить твит по ID
+// showTweet('1'); // получить твит по ID
 
-//getFeed(0, 20); // Вернуться к списку по фильтру
+// getFeed(0, 20); // Вернуться к списку по фильтру
 
 // for changing the view of hashtags in the text on page
-
 
 // eslint-disable-next-line func-names
 function showTags() {
@@ -119,8 +116,3 @@ function showTags() {
 }
 
 showTags();
-
-document.getElementById("show_filter").addEventListener("click", (event) => {
-  // document.querySelectorAll(".list_filter").style.display = 'none';
-  console.log('e')
-});
