@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <title>task2</title>
+
+</head>
+
+<body>
+
+    <div class="page">
+
+        <header>
+            <div class="header_container">
+                <a href="#" class="logo_link">
+                    <img src="images/logo.svg" class="logo" alt="chitchat">
+                </a>
+
+                <div id="headerview" class="header_content">
+
+                </div>
+            </div>
+        </header>
+
+
+        <main>
+
+
+            <div class="main_container">
+                <!-- -------- New Twit -->
+                <div id="write_area" class="twit_write_area"> </div>
+
+
+
+                <nav id="inputs" class="filter_items">
+                </nav>
+
+                <!-- -------- Feed -->
+
+
+                <section class="feed">
+
+
+                    <!-- -------- twit -->
+                    <div id="tweet">
+                        <p class="none" id="show_filter"> Нет ни одной записи </p>
+                    </div>
+
+                    <!-- -------- Feed -->
+                    <nav class="more">
+                        <button id="more" class="load_more selector_name">Загрузить еще</button>
+                    </nav>
+                </section>
+
+            </div>
+    </div>
+
+    <div id="allcomments" class="main_container"></div>
+
+    </main>
+
+
+
+    <!-- -------- Footer -->
+    <footer>
+        <p>CHITCHAT</p>
+        <p>Версия 1.0 22.02.2022</p>
+        <div class="contacts">
+            <p>Mariya Ivahnenko</p>
+            <p>Contact:<a href="mailto:masha.vern@gmail.com" target="_blank">masha.vern@gmail.com</a></p>
+        </div>
+    </footer>
+
+
+    </div>
+
+    <script src="scripts/tweetBase.js"></script>
+    <script src="scripts/tweet.js"></script>
+    <script src="scripts/comment.js"></script>
+    <script src="scripts/tweetCollection.js"></script>
+    <script src="scripts/headerView.js"></script>
+    <script src="scripts/feedView.js"></script>
+    <script src="scripts/filterView.js"></script>
+    <script src="scripts/tweetView.js"></script>
+    <script src="scripts/globalMethods.js"></script>
+</body>
+
+</html>

@@ -2,23 +2,27 @@
 
 class TweetCollection {
 
-    user = "";
+    static user = "";
 
     static maxTextLength = 280;
 
-    get user() {
-        return TweetCollection.user;
-    }
-
-    set user(uservalue) {
-        TweetCollection.user = uservalue;
-    }
-
     _twscopy = [];
 
+    get twscopy() {
+        return this._twscopy;
+    }
+
+    set twscopy(tweets) {
+        if (tweets.length === 0) this._twscopy = [];
+        else
+            tweets.forEach((tweet) => {
+                if (Tweet.validate(tweet)) this._twscopy.push(tweet);
+                else false;
+            });
+    }
 
     constructor(tws) {
-        this._twscopy = tws || [];
+        this.twscopy = tws || [];
     }
 
     //////////////////////////////////////All helper methods for validate///////////////////////////////////////////
@@ -47,7 +51,7 @@ class TweetCollection {
                 id: (value) => typeof value === 'string',
                 text: (value) => typeof value === 'string' && value.length <= TweetCollection.maxTextLength,
                 createdAt: (value) => value instanceof Date,
-                author: (value) => typeof value === 'string',
+                author: (value) => typeof value === 'string' && value.length != 0,
                 comments: (value) => Array.isArray(value)
             },
             keys: ['id', 'text', 'createdAt', 'author', 'comments']
@@ -73,20 +77,20 @@ class TweetCollection {
     }
 
     static arrayClone(arr) {
-        return arr.map(item => {
-            return item = [...arr];
-        });
+        if (!arr) {
+            return;
+        }
+
+        return JSON.parse(JSON.stringify(arr));
     }
 
 
     ///////////////////////////////////////////// end of helper methods for validate//////////////////////////////////////////////
-
+    
 
     getPage = (skip = 0, top = 10, filterConfig = {}) => {
 
-
-        let filteredTweets = TweetCollection.arrayClone(this._twscopy);
-
+        let filteredTweets = TweetCollection.arrayClone(this.twscopy);
 
         if (filterConfig) {
 
@@ -138,7 +142,7 @@ class TweetCollection {
         }
 
         let sortedTweets = filteredTweets.sort(function (a, b) {
-            return a.createdAt - b.createdAt;
+            return new Date(b.createdAt) - new Date(a.createdAt);
         });
 
         sortedTweets = sortedTweets.slice(skip, skip + top);
@@ -148,21 +152,9 @@ class TweetCollection {
 
     }
 
-    get twscopy() {
-        return this._twscopy;
-    }
-
-    set twscopy(tweets) {
-        if (tweets.length === 0) this._twscopy = [];
-        else
-            tweets.forEach((tweet) => {
-                if (Tweet.validate(tweet)) this._twscopy.push(tweet);
-                else false;
-            });
-    }
 
     get(id) {
-        return this._twscopy.find((tweet) => tweet.id === id);
+        return this.twscopy.find((tweet) => tweet.id === id);
 
     }
 
@@ -172,25 +164,25 @@ class TweetCollection {
             id: uniId(),
             text: text,
             createdAt: new Date(),
-            author: this.user,
+            author: TweetCollection.user,
             comments: [],
         }
 
         if (Tweet.validate(newTweet)) {
-            this._twscopy.push(newTweet);
+            this.twscopy.push(newTweet);
             return true;
         }
         return false;
+
     };
 
 
 
     edit = (id, txt) => {
         const tweet = this.get(id);
-
         if (Tweet.validate(tweet)) {
 
-            if (this.user === tweet.author && typeof txt === 'string'
+            if (TweetCollection.user === tweet.author && typeof txt === 'string'
                 && txt.length <= TweetCollection.maxTextLength) {
                 tweet.text = txt;
                 return true;
@@ -202,9 +194,9 @@ class TweetCollection {
     remove(id) {
         const tweet = this.get(id);
         if (tweet) {
-            if (this.user === tweet.author) {
-                const index = this._twscopy.findIndex((tweet) => tweet.id === id);
-                this._twscopy.splice(index, 1);
+            if (TweetCollection.user === tweet.author) {
+                const index = this.twscopy.findIndex((tweet) => tweet.id === id);
+                this.twscopy.splice(index, 1);
                 return true;
             }
             return false;
@@ -213,12 +205,15 @@ class TweetCollection {
     };
 
     addAll(tws) {
+        if (!tws) {
+            return;
+        }
 
         let novalidtweets = [];
 
         tws.forEach(tw => {
             if (Tweet.validate(tw)) {
-                this._twscopy.push(tw);
+                this.twscopy.push(tw);
 
             } else {
                 novalidtweets.push(tw);
@@ -229,7 +224,7 @@ class TweetCollection {
 
 
     clear() {
-        this._twscopy = [];
+        this.twscopy = [];
     }
 
 
@@ -245,4 +240,24 @@ class TweetCollection {
         return false;
     };
 
+}
+
+
+const formatDate = (date) => {
+    if (!date) {
+        return;
+    }
+
+    const checkDate = (i) => {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    };
+
+    return `${checkDate(new Date(date).getDate())}.${checkDate(
+        new Date(date).getMonth() + 1
+    )}.${checkDate(new Date(date).getFullYear())}, ${checkDate(
+        new Date(date).getHours()
+    )}:${checkDate(new Date(date).getMinutes())}`;
 }
