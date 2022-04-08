@@ -1,4 +1,5 @@
 "use strict"
+import { Tweet } from './tweet.js';
 
 class TweetCollection {
 
@@ -261,3 +262,5 @@ const formatDate = (date) => {
         new Date(date).getHours()
     )}:${checkDate(new Date(date).getMinutes())}`;
 }
+
+export { TweetCollection };

@@ -1,5 +1,6 @@
 /* eslint-disable default-param-last */
 /* eslint-disable no-undef */
+import { TweetCollection } from './tweetCollection.js';
 
 const tweetColl = new TweetCollection();
 

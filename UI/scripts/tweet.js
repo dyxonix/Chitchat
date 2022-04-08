@@ -2,6 +2,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-undef */
 /* eslint-disable no-underscore-dangle */
+import { TweetCollection } from './tweetCollection.js';
 
 class Tweet {
   constructor(text, id, createdAt, author, comments) {
@@ -56,3 +57,5 @@ class Tweet {
     return false;
   }
 }
+
+export { Tweet };
