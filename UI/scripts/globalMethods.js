@@ -69,7 +69,7 @@ function getFeed(skip = 0, top = 10, filterConfig) {
   feedView.display(tweetColl.getPage(skip, top, filterConfig));
 
   filtersView.display();
-  setFilter(allauthors);
+  setFilter(allauthors[user]);
 }
 
 function showTweet(id) {
@@ -86,11 +86,11 @@ function showTweet(id) {
 
 /// //////////////////////////////////////////////////////////////////////////////////////
 
-setCurrentUser('Мария'); // Отобразить текущего пользователя
+// setCurrentUser('Мария'); // Отобразить текущего пользователя
 
-setFilter(allauthors); // Добавить список авторов
+// setFilter(allauthors); // Добавить список авторов
 
-getFeed(); // Показать список по фильтру
+// getFeed(); // Показать список по фильтру
 
 // addTweet('Hi, this is my new tweet', TweetCollection.user); // Добавить твит
 

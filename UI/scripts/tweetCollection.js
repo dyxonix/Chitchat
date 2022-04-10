@@ -23,6 +23,7 @@ class TweetCollection {
 
     constructor(tws) {
         this.twscopy = tws || [];
+        this.restore();
     }
 
     //////////////////////////////////////All helper methods for validate///////////////////////////////////////////
@@ -86,7 +87,7 @@ class TweetCollection {
 
 
     ///////////////////////////////////////////// end of helper methods for validate//////////////////////////////////////////////
-    
+
 
     getPage = (skip = 0, top = 10, filterConfig = {}) => {
 
@@ -168,6 +169,7 @@ class TweetCollection {
             comments: [],
         }
 
+
         if (Tweet.validate(newTweet)) {
             this.twscopy.push(newTweet);
             return true;
@@ -204,6 +206,16 @@ class TweetCollection {
         return false;
     };
 
+    save() {
+        localStorage.setItem('tweets', JSON.stringify(this._twscopy));
+    }
+
+    restore() {
+        if (localStorage.getItem('tweets')) this.twscopy = JSON.parse(localStorage.getItem('tweets'));
+
+    }
+
+
     addAll(tws) {
         if (!tws) {
             return;
@@ -214,6 +226,7 @@ class TweetCollection {
         tws.forEach(tw => {
             if (Tweet.validate(tw)) {
                 this.twscopy.push(tw);
+                this.save();
 
             } else {
                 novalidtweets.push(tw);

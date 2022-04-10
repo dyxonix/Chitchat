@@ -7,22 +7,20 @@ class TextAreaView {
     this.containerId = containerId;
   }
 
-  display(textArea) {
+  display() {
     const textView = document.getElementById(this.containerId);
-
+    
     if (!TweetCollection.user) {
       document.getElementById('write_area').style.display = 'none';
     }
-    textView.innerHTML = textArea
-      ? ''
-      : `
-      <form>
+    textView.innerHTML = `
+      <form class="twit_write_area">
         <textarea class="main_textarea" maxlength="280"
          placeholder="Напишите что-нибудь ..."></textarea>
           <hr>
           <div class="twit_actions">
           <p>280</p>
-          <button class="btn_blue" type="submit">Опубликовать</button>
+          <button id="form_send" class="btn_blue" type="submit">Опубликовать</button>
           </div>
       </form>
     `;
@@ -52,20 +50,20 @@ class FiltersView {
         <div class="list_filter">
         <label id="show_filter">Дата</label>
         <div class="input_container">        
-        <input class="input" type="date"/>                
-          <input class="input" type="date"/>
+        <input id="filter_date_from" class="input" type="date"/>                
+          <input id="filter_date_to" class="input" type="date"/>
           </div>
           </div>               
           <div class="list_filter">
            <label id="show_filter">Текст</label>
           <div class="input_container"> 
-          <input class="input" type="text" name="text" placeholder="Введите текст"></input>
+          <input id="filter_text" class="input" type="text" name="text" placeholder="Введите текст"></input>
           </div> 
           </div>
           <div class="list_filter">
            <label id="show_filter">Хэштег</label>
            <div class="input_container"> 
-         <input class="input" type="text" name="text" placeholder="Введите тэг"></input>
+         <input id="filter_tag" class="input" type="text" name="text" placeholder="Введите тэг"></input>
          </div>
          </div>
       </form>
@@ -102,25 +100,13 @@ class FilterView {
   }
 }
 
-const allauthors = [
-  'Ирина',
-  'Мария',
-  'Евгений',
-  'Gleb',
-  'Виктория Смит',
-  'Тема Николаев',
-  'Евгений',
-  'Артем',
-  'Лиза',
-  'Москва',
-  'Петр',
-  'snow',
-  'Геннадий',
-  'Катя',
-  'Ирина',
-  'Мария',
-  'Trojan',
-  'Ваня',
-  'Света',
-  'Rick',
-];
+// const allauthors = [
+//   'Ирина',
+//   'Мария',
+//   'Евгений',
+//   'Gleb',
+//   'Виктория Смит',
+//   'Тема Николаев',
+//   'Евгений',
+ 
+// ];
