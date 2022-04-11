@@ -2,7 +2,9 @@
 /* eslint-disable no-undef */
 class HeaderView {
 
-  loginEventFunc = () => { }
+  loginEventFunc = () => { };
+  signupEventFunc = () => { };
+  signOffEventFunc = () => { };
 
   constructor(containerId) {
     this.containerId = containerId;
@@ -14,19 +16,28 @@ class HeaderView {
 
       ? `<div class="header_user">${currentUser}</div><button id="exit" class="btn_blue">Выйти</button>`
 
-      : '<div class="header_user"><a href=\'#\'id="registr" class="reg_button">Регистрация</a></div> <button id="login" class="btn_blue" type="button_exit">Войти</button>';
+      : '<div class="header_user"><a href=\'#\'id="registr" class="reg_button">Регистрация</a></div> <button id="login" class="btn_blue" type="button">Войти</button>';
+
     if (!currentUser) {
-      this.displayLoginButton();
+      this.bindLoginButtonEvent();
+      this.bindSignUpButtonEvent();
+    } else {
+      this.bindSignOffButtonEvent();
     }
   }
 
-  displayLoginButton() {
+  bindLoginButtonEvent() {
     document.getElementById('login').addEventListener('click', this.loginEventFunc);
   }
 
+  bindSignUpButtonEvent() {
+    document.getElementById('registr').addEventListener('click', this.signupEventFunc);
+  }
 
+  bindSignOffButtonEvent() {
+    document.getElementById('exit').addEventListener('click', this.signOffEventFunc);
+  }
 }
-
 
 class FormView {
 
@@ -68,7 +79,7 @@ class FormView {
 
 
 
-class RegistrView {
+class RegistrationView {
 
   constructor(containerId) {
 

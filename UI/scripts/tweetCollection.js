@@ -159,13 +159,13 @@ class TweetCollection {
 
     }
 
-    add = (text) => {
+    add = (text, user) => {
 
         const newTweet = {
             id: uniId(),
             text: text,
             createdAt: new Date(),
-            author: TweetCollection.user,
+            author: user,
             comments: [],
         }
 

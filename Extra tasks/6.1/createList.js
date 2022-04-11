@@ -56,10 +56,10 @@ function createUl(ul) {
 
         if (li.children) {
             newLi.setAttribute('style', 'font-size: 90%');
-            newLi.innerHTML = li.value;
+            newLi.innerHTML = `<div>${li.value}</div>`;
             newLi.appendChild(createUl(li.children));
         } else {
-            newLi.innerHTML = li.value;
+            newLi.innerHTML = `<div>${li.value}</div>`;
         }
 
         newUl.appendChild(newLi);
@@ -69,4 +69,15 @@ function createUl(ul) {
 
 createList("List", list);
 
+//task6.1
 
+const ulList = document.querySelector("ul")
+
+ulList.addEventListener('click', (event) => {
+    const target = event.target;
+    if (target.tagName === 'DIV') {
+        let parent = target.parentNode.querySelector('ul');
+        if (!parent) return;
+        parent.hidden = !parent.hidden;
+    }
+});

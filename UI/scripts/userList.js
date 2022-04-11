@@ -8,7 +8,8 @@
 
 class UserList {
 
-    _users = [];
+    _users = [{ user: 'Петр', password: '1' },{ user: 'Мария', password: '22' }];
+
     _activeUser = '';
 
     constructor() {
@@ -32,15 +33,24 @@ class UserList {
         return this._activeUser;
     }
 
-    addUser(user, password) {
+    setUser(user, password) {
         this.users.push({ user: user, password: password });
         this.activeUser = user;
-        this.save();
         this.saveUser();
     }
 
     checkRegistr(user) {
-        return this.users.find(user);
+        //  return this.users.find((user) => i === elem) != -1
+        return this.users.includes(user.value);
+    }
+
+    addUser(user, password) {
+        if (!this.checkRegistr(user)) {
+            this.users.push({ user: user, password: password });
+            this.activeUser = user;
+            this.saveUser();
+            this.save();
+        }
     }
 
     save() {
@@ -58,18 +68,6 @@ class UserList {
     restoreUser() {
         if (localStorage.getItem('active_user')) this.activeUser =
             JSON.parse(localStorage.getItem('active_user'));
-        console.log(this.activeUser);
     }
 
-
-    allauthors = [
-
-        'Тема Николаев',
-        'Евгений',
-        'Артем',
-        'Лиза',
-        'Москва',
-        'Петр',
-        'Мария'
-    ];
 }

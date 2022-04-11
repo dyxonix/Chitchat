@@ -13,7 +13,7 @@ const filtersView = new FiltersView('inputs');
 
 const filterView = new FilterView('filter');
 
-const feedView = new TweetFeedView('tweet');
+//const feedView = new TweetFeedView('tweet');
 
 const texareaView = new TextAreaView('write_area');
 

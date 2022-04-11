@@ -3,31 +3,54 @@
 /* eslint-disable no-undef */
 
 class TextAreaView {
-  constructor(containerId) {
+  publishTweetEventFunc = () => { };
+  
+
+  constructor(containerId, user) {
     this.containerId = containerId;
+    this.user = user;
   }
 
   display() {
     const textView = document.getElementById(this.containerId);
-    
-    if (!TweetCollection.user) {
+
+    if (!this.user) {
       document.getElementById('write_area').style.display = 'none';
     }
     textView.innerHTML = `
-      <form class="twit_write_area">
-        <textarea class="main_textarea" maxlength="280"
+      <form id="form_send" class="twit_write_area">
+        <textarea name="text" class="main_textarea" maxlength="280"
          placeholder="Напишите что-нибудь ..."></textarea>
           <hr>
           <div class="twit_actions">
           <p>280</p>
-          <button id="form_send" class="btn_blue" type="submit">Опубликовать</button>
+          <button class="btn_blue" type="submit">Опубликовать</button>
           </div>
       </form>
     `;
+
+    if (this.user) {
+      this.bindPublishTweetEvent();
+    }
   }
+
+  bindPublishTweetEvent() {
+    // const formData = new FormData(document.forms.namedItem("form"));
+    // console.log(document.forms.namedItem("form"))
+    // document.getElementById('form_send').addEventListener('submit', (event) => {
+    //   event.preventDefault();
+    //   return this.publishTweetEventFunc(formData);
+    // });
+
+    document.getElementById('form_send').addEventListener('submit', this.publishTweetEventFunc);
+  }
+  
 }
 
 class FiltersView {
+
+  filterTweetEventFunc = () => { };
+
   constructor(containerId) {
     this.containerId = containerId;
   }
@@ -69,7 +92,14 @@ class FiltersView {
       </form>
       <button id="confirm" class="filter_confirm selector_name">Применить</button>
     `;
+
+    this.bindFiltersTweetEvent();
   }
+
+  bindFiltersTweetEvent() {
+    document.getElementById('filter_text').addEventListener('submit', this.filterTweetEventFunc);
+  }
+
 }
 
 class FilterView {
@@ -94,19 +124,7 @@ class FilterView {
         .join('\n');
     }
   }
-
   setAuthors(authors) {
     this.display(authors);
   }
 }
-
-// const allauthors = [
-//   'Ирина',
-//   'Мария',
-//   'Евгений',
-//   'Gleb',
-//   'Виктория Смит',
-//   'Тема Николаев',
-//   'Евгений',
- 
-// ];
