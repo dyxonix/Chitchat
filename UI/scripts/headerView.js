@@ -69,7 +69,7 @@ class FormView {
             <input id="password" class="comment_textarea  login_textarea pass_textarea" type="password" placeholder="Ваш пароль" name="psw" autocomplete="on" required>
 
             <button type="submit" class="btn_blue submit">Войти</button>
-            <p class="container signin">Новый пользователь? <a class="links" href="#">Зарегистрируйтесь</a></p>
+            <p class="container signin">Новый пользователь? <a id="a_reg" class="links" type="button">Зарегистрируйтесь</a></p>
             </form>
           </section>
                   `;
@@ -122,7 +122,7 @@ class RegistrationView {
             <input id="password" class="comment_textarea  login_textarea pass_textarea" type="password" placeholder="Ваш пароль" name="psw" required>
 
             <button type="submit" class="btn_blue submit">Зарегистрироваться</button>
-            <p class="container signin">Уже регистрировались?<a class="links" href="#">Войти</a></p>
+            <p class="container signin">Уже регистрировались?<a id="a_enter class="links" type="button">Войти</a></p>
             </form>
           </section>
                   `;

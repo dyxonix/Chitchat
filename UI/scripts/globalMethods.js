@@ -22,8 +22,8 @@ const tweetView = new TweetView('tweet');
 const commentView = new CommentsView('allcomments');
 
 function setFilter(author) {
-  filtersView.display();
-  texareaView.display();
+  
+  
   filterView.setAuthors(author);
 }
 
@@ -33,12 +33,11 @@ function getCurrentFilter() {
 }
 
 function setCurrentUser(user) {
-  headerView.display();
+  // headerView.display();
   if (user) {
-    headerView.display(user);
+    //headerView.display(user);
     TweetCollection.user = user;
-    filtersView.display();
-    texareaView.display();
+
   }
 }
 
@@ -68,7 +67,6 @@ function removeTweet(tw) {
 function getFeed(skip = 0, top = 10, filterConfig) {
   feedView.display(tweetColl.getPage(skip, top, filterConfig));
 
-  filtersView.display();
   setFilter(allauthors[user]);
 }
 
@@ -76,10 +74,7 @@ function showTweet(id) {
   const tweet = tweetColl.get(id);
 
   if (tweet) {
-    filtersView.display(tweet);
-
-    tweetView.display(tweet);
-
+    
     commentView.display(tweet.comments);
   }
 }

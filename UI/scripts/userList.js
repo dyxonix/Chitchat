@@ -1,20 +1,16 @@
 "use strict"
 
 
-//хранит массив зарегистрированных пользователей и методы для добавления новых. 
-
-// const userList = document.getElementById('filter_name');
-
-
 class UserList {
 
-    _users = [{ user: 'Петр', password: '1' },{ user: 'Мария', password: '22' }];
-
+    _users = [{ user: 'Петр', password: 'aa' },
+    { user: 'Мария', password: 'bb' }];
+    
     _activeUser = '';
 
     constructor() {
-        this.restore();
-        this.restoreUser();
+         this.restore();
+         this.restoreUser();
     }
 
     set users(users) {
@@ -24,6 +20,7 @@ class UserList {
     get users() {
         return this._users;
     }
+
 
     set activeUser(activeUser) {
         this._activeUser = activeUser;
@@ -40,10 +37,17 @@ class UserList {
     }
 
     checkRegistr(user) {
-        //  return this.users.find((user) => i === elem) != -1
-        return this.users.includes(user.value);
+        return this.users.find((item) =>
+        item.user === user);
     }
 
+    checkLogin(user, psw) {
+        return this.users.find((item) =>
+        item.user === user && item.password === psw);
+    }
+
+
+    
     addUser(user, password) {
         if (!this.checkRegistr(user)) {
             this.users.push({ user: user, password: password });
@@ -66,8 +70,9 @@ class UserList {
     }
 
     restoreUser() {
-        if (localStorage.getItem('active_user')) this.activeUser =
-            JSON.parse(localStorage.getItem('active_user'));
+
+        if (localStorage.getItem('active_user')) 
+        this.activeUser = JSON.parse(localStorage.getItem('active_user'));
     }
 
 }

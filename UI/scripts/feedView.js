@@ -6,6 +6,7 @@ class TweetFeedView {
 
   editTweetEventFunc = () => { };
   removeTweetEventFunc = () => { };
+  showTweetEventFunc = () => { };
 
   constructor(containerId, user) {
     this.containerId = containerId;
@@ -14,14 +15,16 @@ class TweetFeedView {
 
   // eslint-disable-next-line consistent-return
   display(tws) {
+
     if (!tws) {
       return '';
     }
 
+    
+
     // eslint-disable-next-line no-undef
     const tweetfeedView = document.getElementById(this.containerId);
     document.getElementById('more').style.opacity = '1';
-    
     if (tweetfeedView) {
 
       tweetfeedView.innerHTML = tws.map((item) => `
@@ -38,29 +41,74 @@ class TweetFeedView {
                 <p>${item.text}</p>
                 
                 <div class="twit_footer">
-                    <a href="#">
+                    <button class="onetweet" id="one_tweet" name="${item.id}" type="button">
                     <img src="images/chat.svg" alt="chat">
-                    </a>
+                    </button>
                     <span class="twit_comment_number">${item.comments ? item.comments.length : ''}</span>
                     ${item.author === this.user
-          ? ` <div class="twit_edit"> <a id="correct" href="#"><img src="images/edit.svg" alt="edit"></a><button id="remove" name="${item.id}" class="remove" ><img src="images/delete.svg" alt="delete"></button></div>`
+          ? ` <div class="twit_edit">
+           <button id="correct" name="${item.id}" type="button" ><img src="images/edit.svg" alt="edit"></button>
+          <button id="remove" type="button" name="${item.id}" class="remove_id">
+          <img src="images/delete.svg" alt="delete">
+          </button>
+          </div>`
           : ''
         }
                 </div>
                 </article>
-                `).join('\n');
+
+      `,)
+        .join('\n');
     }
-    if (this.user) {
-      this.bindEditTweetEvent();
-      this.bindRemoveTweetEvent();
-    }
-  }
+
+  
+
+     if (this.user) {
+    //   this.bindEditTweetEvent();
+    //   this.bindRemoveTweetEvent();
+       this.bindShowTweetEvent();
+     }
+   }
 
   bindEditTweetEvent() {
-    document.getElementById('correct').addEventListener('click', this.editTweetEventFunc);
+    document.getElementById('correct').addEventListener("click", this.editTweetEventFunc);
+   // document.getElementById('correct').addEventListener("click", function (event) {  });
   }
 
-  bindRemoveTweetEvent(){
-    document.getElementById('remove').addEventListener('click', this.removeTweetEventFunc);
+  bindRemoveTweetEvent() {
+    document.querySelector('.remove_id').addEventListener("click", this.removeTweetEventFunc);
   }
+
+  bindShowTweetEvent() {
+    document.getElementById('one_tweet').addEventListener("click", this.showTweetEventFunc);
+  }
+
 }
+
+
+class ModalView {
+
+  constructor(containerId) {
+    this.containerId = containerId;
+  }
+
+  display(id) {
+    const element = document.querySelector(`#${this.containerId}`);
+
+    modal.innerHTML = id.map(
+      (item) => `         
+     <div class="list_filter modal">
+    <h2>Уверены?</h2>
+    <div class="modal_buttons">
+        <button class="btn" type="button" data-action="no">Нет</button>
+        <button class="btn" type="button" data-action="yes">Да</button>
+    </div>
+    </div>`,)
+      .join('\n');
+  }
+
+}
+
+
+
+

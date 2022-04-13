@@ -196,6 +196,7 @@ class TweetCollection {
     remove(id) {
         const tweet = this.get(id);
         if (tweet) {
+            console.log(TweetCollection.user)
             if (TweetCollection.user === tweet.author) {
                 const index = this.twscopy.findIndex((tweet) => tweet.id === id);
                 this.twscopy.splice(index, 1);
@@ -220,7 +221,7 @@ class TweetCollection {
         if (!tws) {
             return;
         }
-
+  
         let novalidtweets = [];
 
         tws.forEach(tw => {
@@ -242,9 +243,11 @@ class TweetCollection {
 
 
     addComment = (id, comment) => {
+        console.log('ccom')
         const tweet = this.get(id);
         const newСomment = new Comment(comment);
-
+        
+        console.log(Comment.validate(newСomment))
         if (Comment.validate(newСomment)) {
             tweet.comments.push(newСomment)
 

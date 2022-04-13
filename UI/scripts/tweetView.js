@@ -3,6 +3,10 @@
 /* eslint-disable max-classes-per-file */
 
 class TweetView {
+
+  showEventFunc = () => { };
+  commentEventFunc = () => { };
+
   constructor(containerId) {
     this.containerId = containerId;
   }
@@ -17,7 +21,7 @@ class TweetView {
       tweetView.innerHTML = `
             <section class="twit">
 
-                <button class="twit_back" type="button_exit"><img src="images/left.svg" alt="back">На
+                <button id="back" onclick='' class="twit_back" type="button"><img src="images/left.svg" alt="back">На
                 главную</button>
 
 
@@ -33,22 +37,38 @@ class TweetView {
                 <a href="#">
                 <img src="images/chat.svg" alt="chat">
                 </a>
-                <span class="twit_comment_number">${
-  tw.comments ? tw.comments.length : ''
-}</span>
+                <span class="twit_comment_number">${tw.comments ? tw.comments.length : ''
+        }</span>
                 </div>
                 </article>
                 <article id="allcomments" class="comments_area"> </article>
-                <form class="comment_form">
+                <form id="comment" class="comment_form">
                 <input class="comment_textarea" type="text" placeholder="Комментарий..." />
                 <button class="btn_send" type="submit"><img src="images/send.svg" alt="send"></button>
-                    </form>
+                </form>
             </section>
 
             `;
     }
+    if (this.user) {
+      bindBackEvent()
+    }
+
+    bindBackEvent()
   }
+
+  bindBackEvent() {
+    document.querySelector('back').addEventListener('click', this.showEventFunc);
+  }
+
+
+  //bindCommentEvent() {
+  // document.getElementById('comment').addEventListener('submit',  this.commentEventFunc);
+  // }
+
+
 }
+
 
 class CommentsView {
   constructor(containerId) {

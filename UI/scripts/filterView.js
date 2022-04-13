@@ -35,13 +35,6 @@ class TextAreaView {
   }
 
   bindPublishTweetEvent() {
-    // const formData = new FormData(document.forms.namedItem("form"));
-    // console.log(document.forms.namedItem("form"))
-    // document.getElementById('form_send').addEventListener('submit', (event) => {
-    //   event.preventDefault();
-    //   return this.publishTweetEventFunc(formData);
-    // });
-
     document.getElementById('form_send').addEventListener('submit', this.publishTweetEventFunc);
   }
   
@@ -55,12 +48,10 @@ class FiltersView {
     this.containerId = containerId;
   }
 
-  display(fltr) {
+  display() {
     const filtersView = document.getElementById(this.containerId);
 
-    filtersView.innerHTML = fltr
-      ? ''
-      : `
+    filtersView.innerHTML = `
       <form class="filtration">
 
       <div class="list_filter">
@@ -92,8 +83,6 @@ class FiltersView {
       </form>
       <button id="confirm" class="filter_confirm selector_name">Применить</button>
     `;
-
-    this.bindFiltersTweetEvent();
   }
 
   bindFiltersTweetEvent() {
@@ -114,6 +103,9 @@ class FilterView {
     }
 
     const filterAuthors = document.getElementById(this.containerId);
+    
+    console.log('АП')
+    console.log(author)
 
     if (filterAuthors) {
       filterAuthors.innerHTML = author
