@@ -2,11 +2,14 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-undef */
 
+
+
 class TweetFeedView {
 
   editTweetEventFunc = () => { };
-  removeTweetEventFunc = () => { };
+  modalEventFunc = () => { };
   showTweetEventFunc = () => { };
+  removeTweetEventFunc = () => { };
 
   constructor(containerId, user) {
     this.containerId = containerId;
@@ -15,18 +18,22 @@ class TweetFeedView {
 
   // eslint-disable-next-line consistent-return
   display(tws) {
-
     if (!tws) {
-      return '';
+      return "";
     }
 
-    
+    if (tws.length === 0) {
+      document.querySelector('.none').style.opacity = '1';
+      document.getElementById('more').style.opacity = '0';
+    } else {
+      document.getElementById('more').style.opacity = '1';
+      document.querySelector('.none').style.opacity = '0';
+    }
 
     // eslint-disable-next-line no-undef
     const tweetfeedView = document.getElementById(this.containerId);
-    document.getElementById('more').style.opacity = '1';
-    if (tweetfeedView) {
 
+    if (tweetfeedView) {
       tweetfeedView.innerHTML = tws.map((item) => `
                 <article id="twit" class="twit">
                 <div class="user_info">
@@ -41,73 +48,81 @@ class TweetFeedView {
                 <p>${item.text}</p>
                 
                 <div class="twit_footer">
-                    <button class="onetweet" id="one_tweet" name="${item.id}" type="button">
+                    <button class="onetweet" name="${item.id}" type="button">
                     <img src="images/chat.svg" alt="chat">
                     </button>
                     <span class="twit_comment_number">${item.comments ? item.comments.length : ''}</span>
                     ${item.author === this.user
           ? ` <div class="twit_edit">
-           <button id="correct" name="${item.id}" type="button" ><img src="images/edit.svg" alt="edit"></button>
-          <button id="remove" type="button" name="${item.id}" class="remove_id">
+           <button class="correct" name="${item.id}" type="button" ><img src="images/edit.svg" alt="edit"></button>
+          <button type="button" name="${item.id}" class="remove">
           <img src="images/delete.svg" alt="delete">
           </button>
+          <div class="modal_view" id='for_modal'>      
+            <div class="list_filter modal">
+            <h2>Удалить?</h2>
+            <div class="modal_buttons">
+             <button class="btn confirm" name="${item.id}" type="button" data-action="yes">Да</button>
+            </div>
+          </div>
+         </div>
           </div>`
           : ''
         }
-                </div>
-                </article>
+        </div>
+        </article>
 
       `,)
         .join('\n');
     }
 
-  
+    showTags();
 
-     if (this.user) {
-    //   this.bindEditTweetEvent();
-    //   this.bindRemoveTweetEvent();
-       this.bindShowTweetEvent();
-     }
-   }
+    if (tweetfeedView) {
+      this.bindEditTweetEvent();
+      this.modalTweetEvent();
+      this.bindShowTweetEvent();
+      this.bindRemoveTweetEvent();
+    }
+    this.bindShowTweetEvent();
+
+  }
 
   bindEditTweetEvent() {
-    document.getElementById('correct').addEventListener("click", this.editTweetEventFunc);
-   // document.getElementById('correct').addEventListener("click", function (event) {  });
+    let editedTweet = document.querySelectorAll('.correct');
+    editedTweet.forEach((userItem) => {
+      userItem.addEventListener('click', this.editTweetEventFunc);
+    });
+  }
+
+
+  bindShowTweetEvent() {
+    let showedItems = document.querySelectorAll('.onetweet');
+    showedItems.forEach((userItem) => {
+      userItem.addEventListener('click', this.showTweetEventFunc);
+    });
+  }
+
+  modalTweetEvent() {
+    let removingItems = document.querySelectorAll('.remove');
+    removingItems.forEach((userItem) => {
+      userItem.addEventListener('click', this.modalEventFunc);
+    });
   }
 
   bindRemoveTweetEvent() {
-    document.querySelector('.remove_id').addEventListener("click", this.removeTweetEventFunc);
+    let removingItems = document.querySelectorAll('.confirm');
+    removingItems.forEach((userItem) => {
+      userItem.addEventListener('click', this.removeTweetEventFunc);
+    });
   }
-
-  bindShowTweetEvent() {
-    document.getElementById('one_tweet').addEventListener("click", this.showTweetEventFunc);
-  }
-
+  
 }
 
 
-class ModalView {
 
-  constructor(containerId) {
-    this.containerId = containerId;
-  }
 
-  display(id) {
-    const element = document.querySelector(`#${this.containerId}`);
 
-    modal.innerHTML = id.map(
-      (item) => `         
-     <div class="list_filter modal">
-    <h2>Уверены?</h2>
-    <div class="modal_buttons">
-        <button class="btn" type="button" data-action="no">Нет</button>
-        <button class="btn" type="button" data-action="yes">Да</button>
-    </div>
-    </div>`,)
-      .join('\n');
-  }
-
-}
 
 
 

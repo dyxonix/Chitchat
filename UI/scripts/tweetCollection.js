@@ -1,5 +1,6 @@
 "use strict"
 
+
 class TweetCollection {
 
     static user = "";
@@ -13,16 +14,13 @@ class TweetCollection {
     }
 
     set twscopy(tweets) {
-        if (tweets.length === 0) this._twscopy = [];
-        else
-            tweets.forEach((tweet) => {
-                if (Tweet.validate(tweet)) this._twscopy.push(tweet);
-                else false;
-            });
+      
+        this._twscopy = tweets
     }
 
     constructor(tws) {
-        this.twscopy = tws || [];
+     
+        this.twscopy = [];
         this.restore();
     }
 
@@ -93,6 +91,7 @@ class TweetCollection {
 
         let filteredTweets = TweetCollection.arrayClone(this.twscopy);
 
+
         if (filterConfig) {
 
             if (filterConfig.author) {
@@ -115,9 +114,8 @@ class TweetCollection {
                     return false
                 });
             }
-
             if (filterConfig.hashtags) {
-
+    
                 filteredTweets = filteredTweets.filter((tweet) => {
                     if (tweet.text) {
                         return tweet.text.toLowerCase().includes(`#${filterConfig.hashtags.toLowerCase()}`)
@@ -146,10 +144,12 @@ class TweetCollection {
             return new Date(b.createdAt) - new Date(a.createdAt);
         });
 
+
+
         sortedTweets = sortedTweets.slice(skip, skip + top);
 
-
         return sortedTweets;
+
 
     }
 
@@ -159,19 +159,23 @@ class TweetCollection {
 
     }
 
+    getRandomInt() {
+        return Math.floor(Math.random() * 11011).toString();
+    }
+
     add = (text, user) => {
 
         const newTweet = {
-            id: uniId(),
+            id: this.getRandomInt(),
             text: text,
             createdAt: new Date(),
             author: user,
             comments: [],
         }
 
-
         if (Tweet.validate(newTweet)) {
             this.twscopy.push(newTweet);
+            this.save();
             return true;
         }
         return false;
@@ -182,11 +186,14 @@ class TweetCollection {
 
     edit = (id, txt) => {
         const tweet = this.get(id);
-        if (Tweet.validate(tweet)) {
 
+        console.log(tweet);
+
+        if (Tweet.validate(tweet)) {
             if (TweetCollection.user === tweet.author && typeof txt === 'string'
                 && txt.length <= TweetCollection.maxTextLength) {
                 tweet.text = txt;
+                this.save();
                 return true;
             }
             return tweet.text;
@@ -196,10 +203,10 @@ class TweetCollection {
     remove(id) {
         const tweet = this.get(id);
         if (tweet) {
-            console.log(TweetCollection.user)
             if (TweetCollection.user === tweet.author) {
                 const index = this.twscopy.findIndex((tweet) => tweet.id === id);
                 this.twscopy.splice(index, 1);
+                this.save();
                 return true;
             }
             return false;
@@ -208,7 +215,7 @@ class TweetCollection {
     };
 
     save() {
-        localStorage.setItem('tweets', JSON.stringify(this._twscopy));
+        localStorage.setItem('tweets', JSON.stringify(this.twscopy));
     }
 
     restore() {
@@ -221,13 +228,12 @@ class TweetCollection {
         if (!tws) {
             return;
         }
-  
+
         let novalidtweets = [];
 
         tws.forEach(tw => {
             if (Tweet.validate(tw)) {
                 this.twscopy.push(tw);
-                this.save();
 
             } else {
                 novalidtweets.push(tw);
@@ -243,18 +249,17 @@ class TweetCollection {
 
 
     addComment = (id, comment) => {
-        console.log('ccom')
-        const tweet = this.get(id);
-        const newСomment = new Comment(comment);
-        
-        console.log(Comment.validate(newСomment))
-        if (Comment.validate(newСomment)) {
-            tweet.comments.push(newСomment)
 
+        const tweet = this.get(id);
+        const newСomment = new Comment(comment, null, new Date(), TweetCollection.user);
+        if (Comment.validate(newСomment.comment)) {  // TO DO DOES NOT WORK
+            tweet.comments.push(newСomment.comment)
+            this.save();
             return true;
         }
         return false;
     };
+
 
 }
 
@@ -277,3 +282,5 @@ const formatDate = (date) => {
         new Date(date).getHours()
     )}:${checkDate(new Date(date).getMinutes())}`;
 }
+
+

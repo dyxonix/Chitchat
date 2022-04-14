@@ -13,7 +13,6 @@ const winCombinations = [
 
 const cells = document.querySelectorAll("td");
 
-let random = Math.ceil(Math.random() * cells.length) - 1;
 
 const startGame = () => {
     startBoard = Array.from(Array(9).keys());
@@ -77,5 +76,23 @@ const reloadGame = () => {
 
 document.querySelector("button").addEventListener("click", reloadGame);
 
+const blocks = document.querySelectorAll('.empty')
+const colors = ['#3EC1D3', '#FF9A00', '#07689F', '#dd34e2', '#FF165D']
+
+let count = 0
+let blocky = 0
+
+
+for (i = 0; i < blocks.length; i++) {
+    blocks[i].addEventListener('click', function () {
+        this.style.background = colors[Math.floor(colors.length * Math.random())]
+        count++
+        if (count == 5) {
+            this.classList.add('delete')
+            count = 0
+            blocky++
+        }
+    })
+}
 
 startGame();

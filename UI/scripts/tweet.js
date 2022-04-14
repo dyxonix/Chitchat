@@ -4,11 +4,15 @@
 /* eslint-disable no-underscore-dangle */
 
 class Tweet {
+
+  getRandomInt() {
+    return Math.floor(Math.random() * 0.4).toString();
+  }
   constructor(text, id, createdAt, author, comments) {
     this._id = id || uniId();
     this._text = text || '';
     this._author = author || TweetCollection.user;
-    this._createAt = createdAt || new Date();
+    this._createdAt = createdAt || new Date();
     this._comments = comments
       ? comments.map((comment) => new Comment(comment))
       : [];
@@ -39,6 +43,7 @@ class Tweet {
   }
 
   static validate(tw) {
+
     if (tw) {
       const isValidTweet = Object.keys(tw)
         .map((key) => {
@@ -50,7 +55,6 @@ class Tweet {
           return TweetCollection.tweetRules(tw);
         })
         .every((item) => item);
-
       return isValidTweet;
     }
     return false;

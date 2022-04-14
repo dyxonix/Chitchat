@@ -7,21 +7,23 @@ class TweetView {
   showEventFunc = () => { };
   commentEventFunc = () => { };
 
-  constructor(containerId) {
+  constructor(containerId, user) {
     this.containerId = containerId;
+    this.user = user;
   }
 
   display(tw) {
     if (!tw) {
       return '';
     }
+    
 
     const tweetView = document.getElementById(this.containerId);
     if (tweetView) {
       tweetView.innerHTML = `
             <section class="twit">
 
-                <button id="back" onclick='' class="twit_back" type="button"><img src="images/left.svg" alt="back">На
+                <button class="twit_back" type="button"><img src="images/left.svg" alt="back">На
                 главную</button>
 
 
@@ -42,31 +44,42 @@ class TweetView {
                 </div>
                 </article>
                 <article id="allcomments" class="comments_area"> </article>
-                <form id="comment" class="comment_form">
-                <input class="comment_textarea" type="text" placeholder="Комментарий..." />
-                <button class="btn_send" type="submit"><img src="images/send.svg" alt="send"></button>
+                <form id="formElem" class="comment_form">
+                <textarea name="text" class="comment_textarea" placeholder="Комментарий..."></textarea>
+                <button id="com_send" class="btn_send" name="${tw.id}" type="submit"><img src="images/send.svg" alt="send"></button>
                 </form>
             </section>
 
             `;
-    }
-    if (this.user) {
-      bindBackEvent()
+      this.bindBackEvent();
+      this.bindCommentEvent();
+      showTags();
+
+      if (!this.user) {
+        const hideForm = document.querySelectorAll('.comment_form')
+        hideForm.forEach((item) => {
+          item.style.display = "none"
+        })
+      }
     }
 
-    bindBackEvent()
   }
 
   bindBackEvent() {
-    document.querySelector('back').addEventListener('click', this.showEventFunc);
-  }
+    const back = document.querySelectorAll('.twit_back')
+    back.forEach((item) => {
+      item.addEventListener('click', this.showEventFunc);
+    });
 
+  };
 
-  //bindCommentEvent() {
-  // document.getElementById('comment').addEventListener('submit',  this.commentEventFunc);
-  // }
+  bindCommentEvent() {
+    const allbtns = document.querySelectorAll('.comment_form')
+    allbtns.forEach((item) => {
+      item.addEventListener('submit', this.commentEventFunc);
+    })
 
-
+  };
 }
 
 

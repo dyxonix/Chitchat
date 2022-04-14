@@ -5,12 +5,22 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable linebreak-style */
 
+
 class Comment {
+
+
+  getRandomInt(max) {
+    return Math.floor(Math.random() * max).toString();  
+  }
+
+  comment = {}
+
   constructor(text, id, createdAt, author) {
-    this._id = id || uniId();
-    this._text = text || '';
-    this._author = author || TweetCollection.user;
-    this._createAt = createdAt || new Date();
+    this._id = id || this.getRandomInt(2000);
+    this.text = text || '';
+    this._author = author
+    this._createdAt = createdAt || new Date();
+    this.comment = { text, id: this._id , createdAt, author };
   }
 
   get id() {

@@ -120,7 +120,7 @@ h1 {
 }
 
 label {
-    margin: 0 3rem;
+    margin: 3rem;
     text-align: start;
 }
 
@@ -174,7 +174,7 @@ button {
 }
 
 .modal{
-    right: 1%;
+    right: -9%;
     background-color:var(--white);
     padding: 2rem;
     border-radius:4px;
@@ -183,21 +183,21 @@ button {
     text-align: center;
 }
 
-.modal:target {
-    /* opacity: 1;  */
-	pointer-events: auto; /* элемент видим для событий мыши */
+.hide{
+    opacity: 0;
+}
+
+.modal:focus {
+    opacity: 1; 
+	pointer-events: stroke; 
 }
 
 
 /******************************filter************************** */
 
 .list_filter {
-    display: flex;
-    margin: 1rem 0;
+    margin: 1rem auto;
     color: var(--gray);
-    max-height: 22rem;
-    min-width: 25rem;
-    flex-direction: column;
 }
 
 .submit {
@@ -241,9 +241,17 @@ header {
 /******************************filtration************************** */
 
 .filtration {
-    display: flex;
     text-align: center;
     justify-content: space-between;
+}
+
+.filter_btns{
+    display: flex;
+    margin: auto;
+}
+
+.filter_container{
+    display: flex;
 }
 
 
@@ -388,6 +396,7 @@ header {
 .comment_textarea {
     border-radius: var(--button_radius);
     border: none;
+    resize: none;
     box-shadow: 0px 0px 8px 3px #00000017;
     padding: 0.7rem 1.5rem;
     width: 100%;
@@ -481,9 +490,7 @@ header {
     margin-right: auto;
 }
 
-#more {
-    opacity: 0;
-}
+
 
 #show_filter {
     font-size: 1.6rem;
@@ -559,10 +566,13 @@ footer {
 
 @media(max-width:992px) {
 
-
+    
 
     .filtration {
         margin: 0.5rem;
+        flex-direction: column;
+    }
+    .filter_container{
         flex-direction: column;
     }
 

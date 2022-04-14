@@ -1,13 +1,13 @@
 /* eslint-disable no-plusplus */
 let i = 1;
-let c = 2022;
+let c = 22022;
 const uniId = () => `${i++}`;
 const commentId = () => `${c++}`;
 
-// export
+
 const tweets = [
   {
-    id: '77',
+    id: uniId(),
     text: 'В рамках спецификации современных стандартов, непосредственные участники технического прогресса ассоциативно распределены по отраслям.#datamola2022',
     createdAt: new Date('2022-03-26T02:17:46'),
     author: 'Мария',
@@ -384,3 +384,5 @@ const tweets = [
   },
 
 ];
+
+

@@ -4,27 +4,30 @@
 
 class TextAreaView {
   publishTweetEventFunc = () => { };
-  
+  confirmEditTweetEventFunc = () => { };
+   resetTextAreaTweetEvent = () => {};
+
 
   constructor(containerId, user) {
     this.containerId = containerId;
     this.user = user;
   }
 
-  display() {
+  display(text) {
+    if (!text) {
+      text = ""
+    }
     const textView = document.getElementById(this.containerId);
-
     if (!this.user) {
       document.getElementById('write_area').style.display = 'none';
     }
     textView.innerHTML = `
       <form id="form_send" class="twit_write_area">
         <textarea name="text" class="main_textarea" maxlength="280"
-         placeholder="Напишите что-нибудь ..."></textarea>
+         placeholder="Напишите что-нибудь ..." required>${text}</textarea>
           <hr>
           <div class="twit_actions">
-          <p>280</p>
-          <button class="btn_blue" type="submit">Опубликовать</button>
+          <button id="publish_btn" class="btn_blue" type="submit">Опубликовать</button>
           </div>
       </form>
     `;
@@ -35,10 +38,68 @@ class TextAreaView {
   }
 
   bindPublishTweetEvent() {
-    document.getElementById('form_send').addEventListener('submit', this.publishTweetEventFunc);
+    document.getElementById('form_send').
+      addEventListener('submit', this.publishTweetEventFunc);
   }
-  
+
 }
+
+
+class EditAreaView {
+  confirmEditTweetEventFunc = () => { };
+  resetEditTweetEventFunc = () => { };
+  showEventFunc = () => { };
+
+  enteredId = ''
+
+  constructor(containerId) {
+    this.containerId = containerId;
+  }
+
+  display(text, tweetId) {
+    if (!text) {
+      text = ""
+    }
+    const textView = document.getElementById(this.containerId);
+    if (!this.user) {
+      document.getElementById('write_area').style.display = 'none';
+    }
+    textView.innerHTML = `
+      <form id="form_edit" class="twit_write_area">
+        <textarea name="text" class="main_textarea" maxlength="280"
+         placeholder="Напишите что-нибудь ..." required>${text}</textarea>
+          <hr>
+          <div class="twit_actions">
+          <button id="edit_btn" class="btn_blue" type="submit">Редактировать</button>
+          <button id="reset_btn" class="btn_blue">Отмена</button>
+          </div>
+      </form>
+    `;
+    this.enteredId = tweetId;
+    this.bindConfirmEditPublishTweetEvent();
+    this.bindResetPublishTweetEvent();
+  }
+
+  bindConfirmEditPublishTweetEvent() {
+    document.getElementById('form_edit').
+      addEventListener('submit', this.confirmEditTweetEventFunc);
+  }
+
+  bindResetPublishTweetEvent() {
+    document.getElementById('form_edit').
+    addEventListener('reset', this.resetEditTweetEventFunc);
+  }
+
+  bindBackEvent() {
+    const back = document.getElementById('reset_btn')
+    back.forEach((item) => {
+      item.addEventListener('click', this.showEventFunc);
+    });
+  }
+
+}
+
+
 
 class FiltersView {
 
@@ -53,7 +114,7 @@ class FiltersView {
 
     filtersView.innerHTML = `
       <form class="filtration">
-
+      <div class="filter_container"> 
       <div class="list_filter">
        <label id="show_filter">Автор</label>
        <div class="input_container"> 
@@ -80,14 +141,30 @@ class FiltersView {
          <input id="filter_tag" class="input" type="text" name="text" placeholder="Введите тэг"></input>
          </div>
          </div>
+         </div>
+         <label class="filter_btns">
+         <button id="confirm" class="filter_confirm selector_name" type="submit">Применить</button>
+         <button id="reset" class="filter_confirm selector_name" style= "color:gray" type="reset">Сбросить</button>
+         </label>
       </form>
-      <button id="confirm" class="filter_confirm selector_name">Применить</button>
     `;
+
+    this.bindFiltersTweetEvent();
+    this.resetTweetEvent()
+
   }
 
   bindFiltersTweetEvent() {
-    document.getElementById('filter_text').addEventListener('submit', this.filterTweetEventFunc);
+    document.querySelector(".filtration").addEventListener('submit', this.filterTweetEventFunc);
   }
+
+  resetTweetEvent() {
+    document.getElementById("reset").addEventListener('click', () => {
+      location.reload();
+    });
+  }
+
+
 
 }
 
@@ -103,9 +180,6 @@ class FilterView {
     }
 
     const filterAuthors = document.getElementById(this.containerId);
-    
-    console.log('АП')
-    console.log(author)
 
     if (filterAuthors) {
       filterAuthors.innerHTML = author

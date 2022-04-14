@@ -3,7 +3,8 @@
 
 class UserList {
 
-    _users = [{ user: 'Петр', password: 'aa' },
+    _users = [{ user: '', password: '124rpfek23pr-433-04' },
+    { user: 'Петр', password: 'aa' },
     { user: 'Мария', password: 'bb' }];
     
     _activeUser = '';
