@@ -78,6 +78,7 @@ class EditAreaView {
     this.enteredId = tweetId;
     this.bindConfirmEditPublishTweetEvent();
     this.bindResetPublishTweetEvent();
+    //this.bindBackEvent();
   }
 
   bindConfirmEditPublishTweetEvent() {
@@ -90,12 +91,12 @@ class EditAreaView {
     addEventListener('reset', this.resetEditTweetEventFunc);
   }
 
-  bindBackEvent() {
-    const back = document.getElementById('reset_btn')
-    back.forEach((item) => {
-      item.addEventListener('click', this.showEventFunc);
-    });
-  }
+  // bindBackEvent() {
+  //   const back = document.getElementById('reset_btn')
+  //   back.forEach((item) => {
+  //     item.addEventListener('click', this.showEventFunc);
+  //   });
+  // }
 
 }
 

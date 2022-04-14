@@ -35,7 +35,8 @@ class TweetsController {
 
     this.feedView.editTweetEventFunc = this.editTweetCallbackFunction.bind(this);
 
-    this.editformView.resetEditTweetEventFunc = this.resetTextAreaCallbackFunction(this);
+
+   //this.editformView.resetEditTweetEventFunc = this.backEditTweetCallbackFunction(this);
     this.editformView.confirmEditTweetEventFunc = this.confirmEditTweetCallbackFunction.bind(this);
 
     this.feedView.removeTweetEventFunc = this.removeTweetCallbackFunction.bind(this);
@@ -120,6 +121,13 @@ class TweetsController {
     this.feedView.display(controller.tweetColl.getPage(0, 10, this.filterConfig));
     this.textareaView.display();
   }
+
+  // backEditTweetCallbackFunction(event) {
+  //   document.getElementById('write_area').style.display = 'block';
+  //   this.feedView.display(controller.tweetColl.getPage(0, 10, this.filterConfig));
+  //   this.textareaView.display();
+    
+  // }
 
   removeTweetCallbackFunction(event) {
     const tweetId = event.currentTarget.getAttribute('name');

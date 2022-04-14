@@ -186,9 +186,6 @@ class TweetCollection {
 
     edit = (id, txt) => {
         const tweet = this.get(id);
-
-        console.log(tweet);
-
         if (Tweet.validate(tweet)) {
             if (TweetCollection.user === tweet.author && typeof txt === 'string'
                 && txt.length <= TweetCollection.maxTextLength) {
