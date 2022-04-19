@@ -5,7 +5,7 @@
 class TextAreaView {
   publishTweetEventFunc = () => { };
   confirmEditTweetEventFunc = () => { };
-   resetTextAreaTweetEvent = () => {};
+  resetTextAreaTweetEvent = () => { };
 
 
   constructor(containerId, user) {
@@ -65,20 +65,21 @@ class EditAreaView {
       document.getElementById('write_area').style.display = 'none';
     }
     textView.innerHTML = `
+    
+    <button id="reset_btn" class="twit_back" type="button"><img src="images/left.svg" alt="back">Назад</button>
       <form id="form_edit" class="twit_write_area">
         <textarea name="text" class="main_textarea" maxlength="280"
          placeholder="Напишите что-нибудь ..." required>${text}</textarea>
           <hr>
           <div class="twit_actions">
           <button id="edit_btn" class="btn_blue" type="submit">Редактировать</button>
-          <button id="reset_btn" class="btn_blue">Отмена</button>
+          
           </div>
       </form>
     `;
     this.enteredId = tweetId;
     this.bindConfirmEditPublishTweetEvent();
-    this.bindResetPublishTweetEvent();
-    //this.bindBackEvent();
+    this.bindBackEvent();
   }
 
   bindConfirmEditPublishTweetEvent() {
@@ -86,20 +87,12 @@ class EditAreaView {
       addEventListener('submit', this.confirmEditTweetEventFunc);
   }
 
-  bindResetPublishTweetEvent() {
-    document.getElementById('form_edit').
-    addEventListener('reset', this.resetEditTweetEventFunc);
+  bindBackEvent() {
+    const back = document.getElementById('reset_btn')
+    back.addEventListener('click', this.showEventFunc);
   }
 
-  // bindBackEvent() {
-  //   const back = document.getElementById('reset_btn')
-  //   back.forEach((item) => {
-  //     item.addEventListener('click', this.showEventFunc);
-  //   });
-  // }
-
 }
-
 
 
 class FiltersView {

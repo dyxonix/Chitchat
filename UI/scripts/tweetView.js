@@ -16,7 +16,7 @@ class TweetView {
     if (!tw) {
       return '';
     }
-    
+
 
     const tweetView = document.getElementById(this.containerId);
     if (tweetView) {
@@ -45,7 +45,7 @@ class TweetView {
                 </article>
                 <article id="allcomments" class="comments_area"> </article>
                 <form id="formElem" class="comment_form">
-                <textarea name="text" class="comment_textarea" placeholder="Комментарий..."></textarea>
+                <textarea name="text" class="comment_textarea" maxlength="280" placeholder="Комментарий..."></textarea>
                 <button id="com_send" class="btn_send" name="${tw.id}" type="submit"><img src="images/send.svg" alt="send"></button>
                 </form>
             </section>
@@ -84,6 +84,10 @@ class TweetView {
 
 
 class CommentsView {
+
+  editTweetEventFunc = () => { };
+  modalEventFunc = () => { };
+
   constructor(containerId) {
     this.containerId = containerId;
   }
@@ -92,7 +96,7 @@ class CommentsView {
     if (!com) {
       return '';
     }
-
+      
     const comView = document.getElementById(this.containerId);
 
     if (comView) {
@@ -100,18 +104,24 @@ class CommentsView {
         .map(
           (cm) => `
                 
-                <div class="comment">
-                <div class="comment_info">
-                <h1 class="user_name">${cm.author}</h1>
-                <time class="comment_date">${formatDate(cm.createdAt)}</time>
-                </div>
-                <p class="comments_content">${cm.text}</p>
-                <hr>
-                </div>
-                </article>
+            <div class="comment">
+              <div class="comment_info">
+              <h1 class="user_name">${cm.author}</h1>
+              <time class="comment_date">${formatDate(cm.createdAt)}</time>
+              </div>
+              <p class="comments_content">${cm.text}</p>
+                  <hr>
+          </div>
+                
             `,
         )
         .join('\n');
     }
   }
+
+
+
+
+
+
 }
