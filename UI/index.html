@@ -22,7 +22,7 @@
 
         <header>
             <div class="header_container">
-                <a href="#" class="logo_link">
+                <a href="index.html" class="logo_link">
                     <img src="images/logo.svg" class="logo" alt="chitchat">
                 </a>
 
@@ -38,9 +38,7 @@
 
             <div class="main_container">
                 <!-- -------- New Twit -->
-                <div id="write_area" class="twit_write_area"> </div>
-
-
+                <div id="write_area"></div>
 
                 <nav id="inputs" class="filter_items">
                 </nav>
@@ -49,15 +47,14 @@
 
 
                 <section class="feed">
-
-
                     <!-- -------- twit -->
                     <div id="tweet">
-                        <p class="none" id="show_filter"> Нет ни одной записи </p>
+                       
                     </div>
 
                     <!-- -------- Feed -->
                     <nav class="more">
+                        <p class="none" id="show_filter"> Нет ни одной записи </p>
                         <button id="more" class="load_more selector_name">Загрузить еще</button>
                     </nav>
                 </section>
@@ -92,7 +89,8 @@
     <script src="scripts/feedView.js"></script>
     <script src="scripts/filterView.js"></script>
     <script src="scripts/tweetView.js"></script>
-    <script src="scripts/globalMethods.js"></script>
+    <script src="scripts/userList.js"></script>
+    <script src="scripts/tweetsController.js"></script>
 </body>
 
 </html>

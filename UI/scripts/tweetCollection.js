@@ -1,5 +1,6 @@
 "use strict"
 
+
 class TweetCollection {
 
     static user = "";
@@ -13,16 +14,14 @@ class TweetCollection {
     }
 
     set twscopy(tweets) {
-        if (tweets.length === 0) this._twscopy = [];
-        else
-            tweets.forEach((tweet) => {
-                if (Tweet.validate(tweet)) this._twscopy.push(tweet);
-                else false;
-            });
+      
+        this._twscopy = tweets
     }
 
     constructor(tws) {
-        this.twscopy = tws || [];
+     
+        this.twscopy = [];
+        this.restore();
     }
 
     //////////////////////////////////////All helper methods for validate///////////////////////////////////////////
@@ -86,11 +85,12 @@ class TweetCollection {
 
 
     ///////////////////////////////////////////// end of helper methods for validate//////////////////////////////////////////////
-    
+
 
     getPage = (skip = 0, top = 10, filterConfig = {}) => {
 
         let filteredTweets = TweetCollection.arrayClone(this.twscopy);
+
 
         if (filterConfig) {
 
@@ -114,9 +114,8 @@ class TweetCollection {
                     return false
                 });
             }
-
             if (filterConfig.hashtags) {
-
+    
                 filteredTweets = filteredTweets.filter((tweet) => {
                     if (tweet.text) {
                         return tweet.text.toLowerCase().includes(`#${filterConfig.hashtags.toLowerCase()}`)
@@ -145,10 +144,12 @@ class TweetCollection {
             return new Date(b.createdAt) - new Date(a.createdAt);
         });
 
+
+
         sortedTweets = sortedTweets.slice(skip, skip + top);
 
-
         return sortedTweets;
+
 
     }
 
@@ -158,18 +159,23 @@ class TweetCollection {
 
     }
 
-    add = (text) => {
+    getRandomInt() {
+        return Math.floor(Math.random() * 11011).toString();
+    }
+
+    add = (text, user) => {
 
         const newTweet = {
-            id: uniId(),
+            id: this.getRandomInt(),
             text: text,
             createdAt: new Date(),
-            author: TweetCollection.user,
+            author: user,
             comments: [],
         }
 
         if (Tweet.validate(newTweet)) {
             this.twscopy.push(newTweet);
+            this.save();
             return true;
         }
         return false;
@@ -181,10 +187,10 @@ class TweetCollection {
     edit = (id, txt) => {
         const tweet = this.get(id);
         if (Tweet.validate(tweet)) {
-
             if (TweetCollection.user === tweet.author && typeof txt === 'string'
                 && txt.length <= TweetCollection.maxTextLength) {
                 tweet.text = txt;
+                this.save();
                 return true;
             }
             return tweet.text;
@@ -197,12 +203,23 @@ class TweetCollection {
             if (TweetCollection.user === tweet.author) {
                 const index = this.twscopy.findIndex((tweet) => tweet.id === id);
                 this.twscopy.splice(index, 1);
+                this.save();
                 return true;
             }
             return false;
         }
         return false;
     };
+
+    save() {
+        localStorage.setItem('tweets', JSON.stringify(this.twscopy));
+    }
+
+    restore() {
+        if (localStorage.getItem('tweets')) this.twscopy = JSON.parse(localStorage.getItem('tweets'));
+
+    }
+
 
     addAll(tws) {
         if (!tws) {
@@ -229,16 +246,17 @@ class TweetCollection {
 
 
     addComment = (id, comment) => {
+
         const tweet = this.get(id);
-        const newСomment = new Comment(comment);
-
-        if (Comment.validate(newСomment)) {
-            tweet.comments.push(newСomment)
-
+        const newСomment = new Comment(comment, null, new Date(), TweetCollection.user);
+        if (Comment.validate(newСomment.comment)) {  // TO DO DOES NOT WORK
+            tweet.comments.push(newСomment.comment)
+            this.save();
             return true;
         }
         return false;
     };
+
 
 }
 
@@ -261,3 +279,5 @@ const formatDate = (date) => {
         new Date(date).getHours()
     )}:${checkDate(new Date(date).getMinutes())}`;
 }
+
+
