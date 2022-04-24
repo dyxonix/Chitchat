@@ -8,6 +8,7 @@ class TweetFeedApiService {
         this.errorView = new ErrorView('tweet');
         this.user = JSON.parse(localStorage.getItem('active_user'));
         this.token = JSON.parse(localStorage.getItem('token'));
+        this.filterConfig = {};
 
     }
 
@@ -42,7 +43,9 @@ class TweetFeedApiService {
     }
 
     #convertParamsToUrl(from, count, filterConfig) {
-        let result;
+        let result="";
+        console.log(filterConfig.dateFrom)
+
         if (filterConfig.author) {
             result += `&author=${filterConfig.author}`;
         }
@@ -55,7 +58,7 @@ class TweetFeedApiService {
         if (filterConfig.dateTo) {
             result += `&dateTo=${filterConfig.dateTo}`;
         }
-        if (from) {
+        if (from || from===0) {
             result += `&from=${from}`;
         }
         if (count) {
@@ -64,7 +67,9 @@ class TweetFeedApiService {
         if (filterConfig.hashtags && filterConfig.hashtags.length) {
             result += `&hashtags=${filterConfig.hashtags}`;
         }
-        return result.slice(1);
+        
+        return result.slice(0);
+        
     }
 
     delay(ms) {
@@ -112,13 +117,14 @@ class TweetFeedApiService {
             })
     }
 
-    async getTweets(from = 0, count = 10, filterconfig = {}) {
+    async getTweets(from =0, count = 10, filterconfig = {}) {
+
 
         const paramForUrl = this.#convertParamsToUrl(from, count, filterconfig);
         let url = 'https://jslabapi.datamola.com/tweet?' + paramForUrl;
 
         return await fetch(url, {
-            method: 'GET'
+            method: 'GET',
         })
             .then(this.#checkResponseStatus)
             .then(this.#convertResponseToJson)

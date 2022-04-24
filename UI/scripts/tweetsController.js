@@ -233,7 +233,7 @@ class TweetsController {
     const tagFilter = document.getElementById('filter_tag');
 
     const filters = this.filterValue([authorFilter.value, dateFilter_from.value, dateFilter_to.value, textFilter.value, tagFilter.value]);
-    this.feedApiService.getTweets(0, 100, filters).then((result) => {
+    this.feedApiService.getTweets(0, 10, filters).then((result) => {
       controller.feedView.display(result);
       document.querySelector('.load_more').style.display = 'none';
     });
@@ -277,7 +277,7 @@ const mainViewDocument = () => {
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.none').style.opacity = '0';
     controller.feedApiService.restoreToken();
-    const shortSpolling = () => controller.feedApiService.getTweets(0, 10, controller.filterConfig).then((result) => {
+    const shortSpolling = () => controller.feedApiService.getTweets(0, 10, this.filterConfig).then((result) => {
       controller.feedView.display(result);
       controller.filtersView.display();
 
@@ -295,7 +295,7 @@ mainViewDocument();
 const showMore = document.getElementById('more').addEventListener('click', (event) => {
   topFeed += 10;
 
-  controller.feedApiService.getTweets(0, topFeed + 10, controller.filterConfig).then((result) => {
+  controller.feedApiService.getTweets(0, topFeed + 10, this.filterConfig).then((result) => {
     controller.feedView.display(result);
     controller.setFilter(result);
   });
