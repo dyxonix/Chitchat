@@ -38,6 +38,10 @@ main {
 
 }
 
+label {
+    text-align: start;
+}
+
 p,
 small,
 time {
@@ -112,6 +116,7 @@ hr {
     border: none;
     background-color: var(--gray);
     height: 1px;
+    margin: 1rem auto;
 }
 
 h1 {
@@ -119,10 +124,6 @@ h1 {
     font-weight: 500;
 }
 
-label {
-    margin: 3rem;
-    text-align: start;
-}
 
 /******************************buttons************************* */
 
@@ -134,7 +135,10 @@ button {
     outline: none;
     font-size: 1.6rem;
     font-weight: 450;
+    color: inherit;
+    background-color: transparent;
 }
+
 
 .btn_blue {
     padding: 1.4rem 5rem;
@@ -143,11 +147,11 @@ button {
     background-color: var(--primary);
 }
 
-.btn{
-    padding: 0.4rem 0.6rem;
+.btn {
+    padding: 1rem 2rem;
     border-radius: 6px;
-    color:var(--white);
-    background-color:var(--gray);
+    color: var(--white);
+    background-color: var(--gray);
     margin: 1rem 2rem;
 }
 
@@ -165,6 +169,8 @@ button {
     color: var(--gray);
     font-weight: 300;
     margin-left: auto;
+    display: flex;
+    align-items: center;
 
 }
 
@@ -173,23 +179,26 @@ button {
     min-height: 100vh;
 }
 
-.modal{
-    right: -9%;
-    background-color:var(--white);
-    padding: 2rem;
-    border-radius:4px;
+.modal {
+    top: 200%;
+    right: 50%;
+    background-color: var(--white);
+    padding: 3rem;
+    border-radius: 4px;
+    box-shadow: 0px 100px 100px 2000px rgba(34, 60, 80, 0.3);
     border: 0.2px solid;
-    position: fixed;
+    position: absolute;
     text-align: center;
 }
 
-.hide{
-    opacity: 0;
+.modal_btn {
+    display: flex;
+    align-items: center;
 }
 
-.modal:focus {
-    opacity: 1; 
-	pointer-events: stroke; 
+.hide {
+    display: none;
+    align-items: center;
 }
 
 
@@ -245,12 +254,12 @@ header {
     justify-content: space-between;
 }
 
-.filter_btns{
+.filter_btns {
     display: flex;
     margin: auto;
 }
 
-.filter_container{
+.filter_container {
     display: flex;
 }
 
@@ -274,15 +283,12 @@ header {
     font-weight: 500;
 }
 
-.more {
-    display: flex;
 
-}
 
 .load_more {
-    margin: 3rem auto;
+    position: relative;
+    left: 50%;
     background-color: var(--white);
-
 }
 
 
@@ -350,9 +356,8 @@ header {
 
 }
 
-.twit_back {
-    display: flex;
-    align-items: center;
+.twit_back:hover {
+    color: #222222b3;
 }
 
 .twit_text {
@@ -405,6 +410,7 @@ header {
 
 .login_textarea {
     padding: 1rem 3.2rem;
+    margin: 1.2rem 0;
     border-radius: 1rem;
     background: url(images/pers.png) no-repeat 8px;
 
@@ -412,6 +418,35 @@ header {
 
 .pass_textarea {
     background: url(images/key.png) no-repeat 8px;
+}
+
+/******************************error************************** */
+
+
+
+
+.error_title,
+.error_text {
+    margin: 1rem 0;
+}
+
+
+.btn_error {
+    margin: 2rem 0;
+}
+
+.img_error {
+    max-height: 36rem;
+
+}
+
+.errors_container {
+    display: none;
+}
+
+.error_container {
+    flex-direction: column;
+    align-items: center;
 }
 
 /******************************twits************************** */
@@ -466,6 +501,7 @@ header {
     padding: 4rem;
     margin: 4.5rem 0;
     border-radius: var(--radius);
+    word-wrap: break-word;
 }
 
 
@@ -522,14 +558,14 @@ img:hover {
     filter: drop-shadow(0px 0px 2px var(--gray));
 }
 
-.twit:hover {
+/* .twit:hover {
     filter: drop-shadow(0px 4px 3px var(--gray));
-}
+} */
 
 .selector_name:hover,
 .load_more:hover,
-button:hover {
-    box-shadow: 0 0 5px var(--gray);
+.btn_blue:hover {
+    box-shadow: 0 0 15px var(--gray);
 }
 
 .selector_name:focus {
@@ -547,6 +583,8 @@ button:hover {
 .no_comments:hover {
     filter: none;
 }
+
+
 
 /******************************footer************************** */
 
@@ -566,19 +604,28 @@ footer {
 
 @media(max-width:992px) {
 
-    
+    .modal_btn {
+        display: inline;
+    }
 
     .filtration {
         margin: 0.5rem;
         flex-direction: column;
     }
-    .filter_container{
+
+    .filter_container {
         flex-direction: column;
     }
 
     .main_container {
         margin: 0 2rem;
         margin-top: 10rem;
+    }
+
+    .modal {
+        left: 10%;
+        min-width: 25rem;
+
     }
 
     .logo {

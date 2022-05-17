@@ -12,7 +12,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
-    <title>task2</title>
+    <title>CHITCHAT</title>
 
 </head>
 
@@ -30,6 +30,7 @@
 
                 </div>
             </div>
+            <div id='for_modal'></div>
         </header>
 
 
@@ -37,6 +38,15 @@
 
 
             <div class="main_container">
+                <!-- -------- error -->
+                <div class="errors_container">
+
+                    <h1 class="error_title">Ошибка</h1>
+                    <p class="error_text">Что-то пошло не так!</p>
+
+                    <button class="btn_blue btn_error" type="submit">На главную</button>
+                    <img class="img_error" src="images/11104.svg" class="logo" alt="chitchat">
+                </div>
                 <!-- -------- New Twit -->
                 <div id="write_area"></div>
 
@@ -47,12 +57,12 @@
 
 
                 <section class="feed">
-                    <!-- -------- twit -->
+
                     <div id="tweet">
-                       
+
                     </div>
 
-                    <!-- -------- Feed -->
+
                     <nav class="more">
                         <p class="none" id="show_filter"> Нет ни одной записи </p>
                         <button id="more" class="load_more selector_name">Загрузить еще</button>
@@ -62,16 +72,12 @@
             </div>
     </div>
 
-    <div id="allcomments" class="main_container"></div>
-
     </main>
-
-
 
     <!-- -------- Footer -->
     <footer>
         <p>CHITCHAT</p>
-        <p>Версия 1.0 22.02.2022</p>
+        <p>Версия 4.0 19.04.2022</p>
         <div class="contacts">
             <p>Mariya Ivahnenko</p>
             <p>Contact:<a href="mailto:masha.vern@gmail.com" target="_blank">masha.vern@gmail.com</a></p>
@@ -81,15 +87,14 @@
 
     </div>
 
-    <script src="scripts/tweetBase.js"></script>
-    <script src="scripts/tweet.js"></script>
-    <script src="scripts/comment.js"></script>
-    <script src="scripts/tweetCollection.js"></script>
+    <!-- <script src="scripts/tweetBase.js"></script> -->
     <script src="scripts/headerView.js"></script>
     <script src="scripts/feedView.js"></script>
     <script src="scripts/filterView.js"></script>
     <script src="scripts/tweetView.js"></script>
     <script src="scripts/userList.js"></script>
+    <script src="scripts/errorView.js"></script>
+    <script src="scripts/apiService.js"></script>
     <script src="scripts/tweetsController.js"></script>
 </body>
 
